@@ -7,7 +7,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #953232;
+  background-color: #1A1A1A;
+  width: 100%;
   color: white;
   padding: 1rem 2rem;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);

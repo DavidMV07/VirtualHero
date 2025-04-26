@@ -1,5 +1,7 @@
 .Barra{
     display: flex;
+    width: 100%;
+    height: 10vh;
     align-items: center;
     justify-content: space-between;
     color: white;
@@ -7,7 +9,7 @@
 }
 
 .Barra__Img{
-    width: 10%;
+    width: 7%;
 }
 .Barra__Nav{
     display: flex;

@@ -3,14 +3,19 @@ import './index.css';
 
 function Footer () {
   return (
-      <footer className="footer">
-        <div className="footer__container">
-          <div className="footer__content">
-            <h2 className="footer__title">Virtual Hero</h2>
-            <p className="footer__text">Programado por : .....</p>
-          </div>
-        </div>
-      </footer>
+<footer class="footer">
+  <div class="footer-content">
+    <p>&copy; 2025 CodeTech Compañy. Todos los derechos reservados.</p>
+    <nav class="footer-nav" aria-label="Enlaces del pie de página">
+      <ul>
+        <li><a href="#">Inicio</a></li>
+        <li><a href="#">Acerca de</a></li>
+        <li><a href="#">Servicios</a></li>
+        <li><a href="#">Contacto</a></li>
+      </ul>
+    </nav>
+  </div>
+</footer>
 
   );
 }
