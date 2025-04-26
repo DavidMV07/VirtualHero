@@ -8,9 +8,9 @@ function BarraNav() {
         <nav className='Barra__Nav'>
             <ul>
                 <li><a href="../Home">Home</a></li>
-                <li><a href="#accessories">Accessories</a></li>
+                <li><a href="">Accessories</a></li>
                 <li><a href="#services">Services</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="../Contact">Contact</a></li>
             </ul>
         </nav>
     </div>
