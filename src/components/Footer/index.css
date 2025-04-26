@@ -1,0 +1,26 @@
+.footer{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #282c34;
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .footer__title {
+    font-size: 20px;
+  }
+  .footer__text {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer__title {
+    font-size: 18px;
+  }
+  .footer__text {
+    font-size: 12px;
+  }
+}

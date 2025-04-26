@@ -1,0 +1,68 @@
+.Barra{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+    padding: 1rem 2rem;
+}
+
+.Barra__Img{
+    width: 10%;
+}
+.Barra__Nav{
+    display: flex;
+    padding: 0;
+    margin: 0;
+    gap: 20px;
+}
+  
+.Barra h1 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+    
+.Barra__Nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+    margin: 0;
+    padding: 0;
+}
+    
+.Barra__Nav a {
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+    transition: color 0.3s ease, border-bottom 0.3s ease;
+    border-bottom: 2px solid transparent;
+}
+    
+.Barra__Nav a:hover {
+    color: #4fc3f7;
+    border-bottom: 2px solid #4fc3f7;
+}
+    
+/* Responsive nav for smaller screens */
+@media (max-width: 768px) {
+    .Barra{
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .Barra__Nav ul {
+        flex-direction: column;
+        width: 100%;
+        gap: 1rem;
+        margin-top: 1rem;
+    }
+    
+    .Barra__Nav li {
+        width: 100%;
+    }
+    
+    .Barra__Nav a {
+        display: block;
+        width: 100%;
+        padding: 0.5rem 0;
+    }
+}
