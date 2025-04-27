@@ -1,8 +1,9 @@
 import "./Reset.css";
 import "./App.css";
-import Footer from "./components/Footer";
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from "./components/Header";
 import Main from "./components/Main";
+import Footer from "./components/Footer";
 
 
 function App() {
@@ -10,9 +11,11 @@ function App() {
   return (
     <>
       <div className="Custom">
-        <Header />
-        <Main/>
-        <Footer />
+        <BrowserRouter>
+          <Header />
+          <Main />
+          <Footer />
+        </BrowserRouter>
       </div>
     </>
   );

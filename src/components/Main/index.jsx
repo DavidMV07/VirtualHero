@@ -1,3 +1,5 @@
+import { Routes, Route } from 'react-router-dom';
+import "./Main.css";
 import Chatbot from "../ChatOnline";
 import Contact from "../Contact";
 import ProductCRUD from "../Crud/Index";
@@ -8,10 +10,12 @@ function Main() {
   return (
       <main className="Main">
         <div className="container">
-          <Home />
-          <Contact />
-          <ProductCRUD />
-          <ProductList /> 
+          <Routes>
+            <Route path="/Home" element={<Home />} />
+            <Route path="/Accesorios" element={<ProductList />} />
+            <Route path="/servicios" element={<ProductCRUD />} />
+            <Route path="/Contact" element={<Contact />} />
+          </Routes>
           <Chatbot />
         </div>
       </main>

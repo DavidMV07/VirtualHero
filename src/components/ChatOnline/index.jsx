@@ -12,7 +12,7 @@ const Chatbot= () => {
     role: 'model',
     text: companyInfo
   }]);
-  const [showChatbot, setShowChatbot] = useState([false]);
+  const [showChatbot, setShowChatbot] = useState(false);
 
   const chatBodyRef = useRef();
   
