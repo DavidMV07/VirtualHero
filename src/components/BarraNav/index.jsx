@@ -10,7 +10,7 @@ function BarraNav() {
             <ul>
                 <li><a href="../Home">Home</a></li>
                 <li><a href="../Accesorios">Accessories</a></li>
-                <li><a href="#services">Services</a></li>
+                <li><a href="/ProductCRUD">Administrador</a></li>
                 <li><a href="../Contact">Contact</a></li>
             </ul>
         </nav>

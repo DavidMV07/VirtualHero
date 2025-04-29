@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from "./components/Header";
 import Main from "./components/Main";
 import Footer from "./components/Footer";
+import Home from "./components/Home";
 
 
 function App() {
@@ -13,7 +14,7 @@ function App() {
       <div className="Custom">
         <BrowserRouter>
           <Header />
-          <Main />
+          <Main/>
           <Footer />
         </BrowserRouter>
       </div>

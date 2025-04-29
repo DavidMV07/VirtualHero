@@ -2,7 +2,7 @@ import { Routes, Route } from 'react-router-dom';
 import "./Main.css";
 import Chatbot from "../ChatOnline";
 import Contact from "../Contact";
-import ProductCRUD from "../Crud/Index";
+import ProductCRUD from "../ProductCRUD";
 import ProductList from "../Accesorios/Productos";
 import Home from "../Home";
 
@@ -13,7 +13,7 @@ function Main() {
           <Routes>
             <Route path="/Home" element={<Home />} />
             <Route path="/Accesorios" element={<ProductList />} />
-            <Route path="/servicios" element={<ProductCRUD />} />
+            <Route path="/ProductCRUD" element={<ProductCRUD />} />
             <Route path="/Contact" element={<Contact />} />
           </Routes>
           <Chatbot />
