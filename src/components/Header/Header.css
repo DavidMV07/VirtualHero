@@ -1,0 +1,149 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  list-style: none;
+}
+
+.Barra__Img{
+  display: flex;
+  width: 5%;
+}
+
+.Header{
+  background: #1a1a1a;
+  width: 100%;
+  top: 0;
+  right: 0;
+  color: #fff;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 25px;
+  transition: all .50s ease;
+}
+
+.Barra__Nav{
+  display: flex;
+}
+
+.Barra__Nav a{
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 500;
+  padding: 5px 0;
+  margin: 0px 30px;
+  transition: all .50s ease;
+}
+
+.Barra__Nav a:hover {
+  color: #4fc3f7;
+}
+  
+.Login{
+  display: flex;
+  align-items: center;
+}
+
+.Login a{
+  margin-right: 25px;
+  margin-left: 10px;
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 500;
+  transition: all .50s ease;
+}
+
+.User{
+  display: flex;
+  align-items: center;
+}
+
+.User i{
+  color: white;
+  font-size: 28px;
+  margin-right: 7px;
+}
+
+#menu-icon{
+  font-size: 35px;
+  color: white;
+  cursor: pointer;
+  z-index: 1001;
+  display: none;
+}
+/* Responsive nav for smaller screens */
+@media (max-width: 768px) {
+  .Barra{
+      flex-direction: column;
+      align-items: flex-start;
+  }
+  
+  .Barra__Nav ul {
+    flex-direction: column;
+    width: 100%;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  
+  .Barra__Nav li {
+    width: 100%;
+  }
+  
+  .Barra__Nav a {
+    display: block;
+    width: 100%;
+    padding: 0.5rem 0;
+  }
+}
+
+@media (max-width: 1280px) {
+  Header {
+    padding: 14px 2%;
+    transition: .2s;
+  }
+
+  .Barra__Nav{
+    padding: 5px 0;
+    margin: 0 20px;
+  }
+}
+
+@media (max-width: 1090px){
+  #menu-icon{
+    display: block;
+  }
+
+  .Barra__Nav{
+    position: absolute;
+    top: 100%;
+    right: -100%;
+    width: 270px;
+    height: 29vh;
+    display: flex;
+    background: #1a1a1a;
+    flex-direction: column;
+    justify-content: flex-start;
+    border-radius: 10px;
+    transition: all .50s ease;
+  }
+
+  .Barra__Nav a{
+    display: block;
+    margin: 12px 0;
+    padding: 0 25px;
+    transition: all .50s ease;
+  }
+
+  .Barra__Nav a:hover {
+    color: #4fc3f7;
+    transform: translateY(5px);
+  }
+
+  .Barra__Nav.open{
+    right: 2%;
+    
+  }
+}
