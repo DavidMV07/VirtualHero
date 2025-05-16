@@ -17,6 +17,11 @@ html, body{
     padding: 20px;
     background-color: #fff;
 }
+.Main.login {
+    display: block;
+    padding: 0;
+    background-color: #1a1a1a;
+}
 
 @media screen and (max-width: 768px) {
     .Main {
