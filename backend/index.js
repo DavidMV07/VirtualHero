@@ -2,6 +2,7 @@ import express, { json } from "express";
 import { createConnection } from "mysql2";
 import cors from "cors";
 import { hash, compare } from "bcrypt"; // Sirve para encriptar contraseñas
+import jwt from 'jsonwebtoken';
 import dotenv from "dotenv";
 dotenv.config();
 
@@ -88,11 +89,33 @@ app.post("/login", (req, res) => {
       return res.status(401).json({ message: "Contraseña incorrecta" });
     }
 
-    // Iniciar sesión exitoso
-    res.status(200).json({ message: "Inicio de sesión exitoso", email: user.email });
+    // Generar token JWT
+    const token = jwt.sign({ id: user.id, email: user.email }, process.env.JWT_SECRET, {
+      expiresIn: '1h',
+    });
+
+
+    // Enviar token al cliente
+    res.status(200).json({ message: "Inicio de sesión exitoso", token });
   });
 });
+// Middleware para autenticar el token JWT
+function authenticateToken(req, res, next) {
+  const authHeader = req.headers['authorization'];
+  const token = authHeader && authHeader.split(' ')[1];
 
+  if (token == null) return res.sendStatus(401);
+
+  jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
+    if (err) return res.sendStatus(403);
+    req.user = user;
+    next();
+  });
+}
+
+app.get("/admin", authenticateToken, (req, res) => {
+  // Lógica para la sección de administración
+});
 // Endpoint para obtener productos
 app.get("/products", (req, res) => {
   db.query("SELECT * FROM products", (err, results) => {

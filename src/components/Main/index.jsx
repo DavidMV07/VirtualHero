@@ -15,8 +15,6 @@ function Main() {
 
   return (
     <>
-      {/* Renderiza el Header solo si no estás en la página de login o signup */}
-      {location.pathname !== '/login' && location.pathname !== '/signup' && <Header />}
       <main className={`Main ${location.pathname === '/login' || location.pathname === '/signup' ? 'login' : ''}`}>
         <div className="container">
           <Routes>
@@ -30,9 +28,9 @@ function Main() {
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>
           {location.pathname !== '/login' && location.pathname !== '/signup' && <ChatOnline />}
+          
         </div>
       </main>
-    
     </>
   );
 }
