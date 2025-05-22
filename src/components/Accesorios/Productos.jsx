@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import "./Accesorios.css"; 
-import { useCategory } from "../../Context/CategoryContext"; 
+import { useSearchParams } from "react-router-dom"; // <-- Importamos para leer el parámetro de la URL
 
 const ProductList = () => {
-  const { selectedCategory } = useCategory();
+  const [searchParams] = useSearchParams(); // <-- Hook para leer parámetros
+  const selectedCategory = searchParams.get("cat"); // <-- Obtenemos el valor de "cat"
   const [products, setProducts] = useState([]);
 
- 
   useEffect(() => {
     fetch("http://localhost:5000/products")
       .then((response) => response.json())
@@ -14,7 +14,7 @@ const ProductList = () => {
       .catch((error) => console.error("Error al obtener productos:", error));
   }, []);
 
-  // Si hay una categoría seleccionada, filtramos los productos
+  // Filtramos por categoría si está definida en la URL
   const filteredProducts = selectedCategory
     ? products.filter((product) => product.category === selectedCategory)
     : products;
