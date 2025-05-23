@@ -3,7 +3,6 @@ import { useState } from 'react';
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [categoryDropdownOpen, setCategoryDropdownOpen] = useState(false);
 
   const handleLoginClick = () => {
     window.location.href = '/login';
@@ -19,14 +18,6 @@ const Header = () => {
 
   const handleLinkClick = () => {
     setMenuOpen(false);
-  };
-
-  const handleCategoryClick = (category) => {
-    console.log("Categoría seleccionada:", category);
-    // Aquí podés redirigir si usás useNavigate
-    window.location.href = `/Accesorios?cat=${category}`;
-    setMenuOpen(false);
-    setCategoryDropdownOpen(false);
   };
 
   return (
@@ -59,7 +50,7 @@ const Header = () => {
 
           <div className="nav__menu">
             <ul className="nav__list">
-              <li className="nav__item"><a href="../Home" className="nav__link active" onClick={handleLinkClick}><i className="ri-home-4-fill"></i>Home</a></li>
+              <li className="nav__item"><a href="../Home" className="nav__link" onClick={handleLinkClick}><i className="ri-home-4-fill"></i>Home</a></li>
               <li className="nav__item"><a href="../Accesorios" className="nav__link" onClick={handleLinkClick}><i className="ri-store-3-fill"></i>Accessories</a></li>
               <li className="nav__item"><a href="../ProductCRUD" className="nav__link" onClick={handleLinkClick}><i className="ri-admin-fill"></i>Admin</a></li>
               <li className="nav__item"><a href="../Services" className="nav__link" onClick={handleLinkClick}><i className="ri-service-fill"></i>Services</a></li>

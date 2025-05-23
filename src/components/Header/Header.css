@@ -125,7 +125,6 @@ img {
 .nav__img {
   display: flex;
   justify-content: center;
-  padding-top: 0.25rem;
   margin-bottom: 0.8rem;
   width: 100px;
   height: 100px;
@@ -151,7 +150,7 @@ img {
 }
 
 .nav__item {
-  margin: 2.5rem 0;
+  margin: 2.5rem;
 }
 
 .nav__link {
@@ -159,11 +158,11 @@ img {
 }
 
 .nav__social{
-    padding-top: 0.5rem;
+    padding-top: 2.4rem;
 }
 
 .nav__social-icon{
-    font-size: 1.2rem;
+    font-size: 1rem;
     color: var(--white-color);
     margin-right: 1rem;
 }
