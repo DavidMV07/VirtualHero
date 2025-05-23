@@ -1,14 +1,12 @@
-import { Routes, Route, Navigate, useLocation } from 'react-router-dom'; // Asegúrate de incluir useLocation
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import './Main.css';
 import ChatOnline from '../ChatOnline';
 import Contact from '../Contact';
 import ProductCRUD from '../ProductCRUD';
 import ProductList from '../Accesorios/Productos';
-import Home from '../Home';
 import Login from '../../pages/Login';
 import Signup from '../../pages/Signup';
-import Header from '../Header';
-import Footer from '../Footer';
+import Home from '../Home';
 
 function Main() {
   const location = useLocation(); // Obtiene la ruta actual
@@ -26,9 +24,9 @@ function Main() {
             <Route path="/Signup" element={<Signup />} /> {}
             {/* Redirige rutas no reconocidas */}
             <Route path="*" element={<Navigate to="/" />} />
+            
           </Routes>
           {location.pathname !== '/login' && location.pathname !== '/signup' && <ChatOnline />}
-          
         </div>
       </main>
     </>

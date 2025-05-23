@@ -45,7 +45,7 @@ const Header = () => {
           ></ion-icon>
           <div className="nav__perfil">
             <div className="nav__img">
-              <img src="LOGO.png" alt="Logo de la Empresa" />
+              <img src="LOGO.png" alt="VirtualHero" />
             </div>
             <div>
               <a href="" className="nav__name">Virtual Hero</a>
@@ -53,7 +53,7 @@ const Header = () => {
           </div>
           <div className="nav__menu">
             <ul className="nav__list">
-              <li className="nav__item"><a href="../Home" className="nav__link active" onClick={handleLinkClick}><i className="ri-home-4-fill"></i>Home</a></li>
+              <li className="nav__item"><a href="../Home" className="nav__link" onClick={handleLinkClick}><i className="ri-home-4-fill"></i>Home</a></li>
               <li className="nav__item"><a href="../Accesorios" className="nav__link" onClick={handleLinkClick}><i className="ri-store-3-fill"></i>Accessories</a></li>
               <li className="nav__item"><a href="../ProductCRUD" className="nav__link" onClick={handleLinkClick}><i className="ri-admin-fill"></i>Admin</a></li>
               <li className="nav__item"><a href="../Services" className="nav__link" onClick={handleLinkClick}><i className="ri-service-fill"></i>Services</a></li>
