@@ -125,7 +125,6 @@ img {
 .nav__img {
   display: flex;
   justify-content: center;
-  padding-top: 0.25rem;
   margin-bottom: 0.8rem;
   width: 100px;
   height: 100px;
@@ -151,21 +150,21 @@ img {
 }
 
 .nav__item {
-  margin: 2.5rem 0;
+  margin: 2.5rem;
 }
 
 .nav__link {
   color: var(--white-color);
 }
 
-.nav__social {
-  padding-top: 0.5rem;
+.nav__social{
+    padding-top: 2.4rem;
 }
 
-.nav__social-icon {
-  font-size: 1.2rem;
-  color: var(--white-color);
-  margin-right: 1rem;
+.nav__social-icon{
+    font-size: 1rem;
+    color: var(--white-color);
+    margin-right: 1rem;
 }
 
 .nav__social-icon:hover {
@@ -218,13 +217,13 @@ img {
     align-items: center;
   }
 
-  .nav__img {
-    width: 100%;
-    height: 100%;
-    margin-right: 0.5rem;
-    margin-bottom: 0;
-    align-items: center;
-  }
+    .nav__img{
+        width: 100%;
+        height: 100%;
+        margin-right: 0.5rem;
+        margin-bottom: 0;
+        align-items: center;
+    }
 
   .nav__img img {
     width: 100px;

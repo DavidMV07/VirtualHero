@@ -7,8 +7,9 @@
   
 body{
     width: 100%;
-    min-height: 100vh;
+    min-height: 100dvh;
     background: #cfd2d3;
+
 }
   
 .Custom{
