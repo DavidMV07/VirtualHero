@@ -75,6 +75,7 @@ const Header = () => {
                 </button>
                 {categoryDropdownOpen && (
                   <ul className="dropdown-content">
+                    <li><a onClick={() => handleCategoryClick("Todos")}>Todos</a></li>
                     <li><a onClick={() => handleCategoryClick("Periféricos")}>Periféricos</a></li>
                     <li><a onClick={() => handleCategoryClick("Audio")}>Audio</a></li>
                     <li><a onClick={() => handleCategoryClick("Pantallas")}>Pantallas</a></li>

@@ -16,7 +16,7 @@ const ProductList = () => {
 
   // Filtramos por categoría si está definida en la URL
   const filteredProducts = selectedCategory
-    ? products.filter((product) => product.category === selectedCategory)
+    ? products.filter((product) => product.category && selectedCategory === todos)
     : products;
 
   return (
