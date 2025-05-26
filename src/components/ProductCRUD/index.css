@@ -13,7 +13,7 @@ body {
 
 .CrudContainer {
     padding: 2rem;
-    max-width: 48rem; /* 768px */
+    max-width: 48rem 768px; /* 768px */
     margin: 2rem auto;
     background-color: #ffffff;
     border-radius: 0.75rem;

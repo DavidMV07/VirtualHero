@@ -1,14 +1,14 @@
-import express, { json } from "express";
-import { createConnection } from "mysql2";
-import cors from "cors";
+import express, { json } from "express"; // Nos srive para crear el servidor
+import { createConnection } from "mysql2"; // Nos sirve para conectarnos a la base de datos
+import cors from "cors"; //Nos sirve para permitir que nuestro servidor sea accesible desde otras páginas web
 import { hash, compare } from "bcrypt"; // Sirve para encriptar contraseñas
-import jwt from 'jsonwebtoken';
-import dotenv from "dotenv";
+import jwt from 'jsonwebtoken'; //nos srive para crear como llaves de seguridad
+import dotenv from "dotenv"; //nos sirve para crear claves secretasen un archivo .env en vez de en el código
 dotenv.config();
 
-const app = express();
-app.use(cors());
-app.use(json());
+const app = express(); // Creamos el servidor
+app.use(cors()); //Aqui aceptamos  peticiones de otras páginas web
+app.use(json()); //Aqui aceptamos peticiones en formato JSON
 
 // creando la conexicion con la base de datos (virtualhero)
 const db = createConnection({
@@ -26,26 +26,27 @@ db.connect((err) => {
   console.log("Conectado a la base de datos MySQL");
 });
 
-// Endpoint para registrar usuarios
+//post recibe un objeto JSON con los datos del usuario
 app.post("/register", async (req, res) => {
   const { email, password } = req.body;
 
-  // Validación básica
+  //Revisamos si el usuario llena los campos obligatorios
   if (!email || !password) {
     return res.status(400).json({ message: "Email y contraseña son obligatorios" });
   }
 
   try {
-    // Verificar si el usuario ya existe
-    const checkUserQuery = "SELECT * FROM users WHERE email = ?";
+    // Verificamos si el usuario ya existe
+    const checkUserQuery = "SELECT * FROM users WHERE email = ?"; // Aqui le damos una orden para La base de datos que busque en la tabla users si existe un usuario con el email que nos mandaron
     db.query(checkUserQuery, [email], async (err, results) => {
       if (err) return res.status(500).json({ message: "Error en el servidor" });
-
+      
+      // Si el usuario ya existe, enviamos un mensaje de error
       if (results.length > 0) {
         return res.status(400).json({ message: "El usuario ya existe" });
       }
 
-      // Encriptar la contraseña
+      // Encritamos la contraseña 
       const hashedPassword = await hash(password, 10);
 
       // Insertar nuevo usuario
@@ -73,7 +74,7 @@ app.post("/register", async (req, res) => {
 app.post("/login", (req, res) => {
   const { email, password } = req.body;
 
-  // Verificar si el usuario existe
+  // Verificamos si el usuario existe
   const checkUserQuery = "SELECT * FROM users WHERE email = ?";
   db.query(checkUserQuery, [email], async (err, results) => {
     if (err) return res.status(500).json({ message: "Error en el servidor" });
@@ -83,7 +84,7 @@ app.post("/login", (req, res) => {
 
     const user = results[0];
 
-    // Verificar la contraseña
+    // Verificamos la contraseña
     const isPasswordValid = await compare(password, user.password);
     if (!isPasswordValid) {
       return res.status(401).json({ message: "Contraseña incorrecta" });
@@ -148,7 +149,7 @@ app.post("/products", (req, res) => {
       return res.status(500).send("Error al agregar producto");
     }
 
-    // Puedes retornar el ID del producto insertado
+    // Si la inserción es exitosa, enviamos una respuesta con el ID del nuevo producto
     res.status(201).json({
       message: "Producto agregado correctamente",
       productId: result.insertId,
@@ -157,7 +158,7 @@ app.post("/products", (req, res) => {
 });
 
 
-// Endpoint para eliminar productos
+// Recibimos una ruta delete para eliminar productos
 app.delete("/products/:id", (req, res) => {
   const { id } = req.params;
   db.query("DELETE FROM products WHERE id = ?", [id], (err, result) => {
@@ -166,7 +167,7 @@ app.delete("/products/:id", (req, res) => {
       return res.status(500).send("Error al eliminar producto");
     }
 
-    if (result.affectedRows === 0) {
+    if (result.affectedRows === 0) {//nos indica cuantas filas se vieron afectadas
       return res.status(404).send("Producto no encontrado");
     }
 
