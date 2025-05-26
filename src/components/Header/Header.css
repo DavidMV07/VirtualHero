@@ -35,13 +35,6 @@
   box-sizing: border-box;
 }
 
-body {
-  margin: var(--header-height) 0 0 0;
-  font-family: var(--body-font);
-  font-size: var(--normal-font-size);
-  font-weight: 500;
-}
-
 ul {
   margin: 0;
   padding: 0;
@@ -73,7 +66,7 @@ img {
   top: 0;
   left: 0;
   padding: 0 1.5rem;
-  background-color: var(--dark-color);
+  background-color: transparent;
   z-index: var(--z-fixed);
   display: flex;
   justify-content: space-between;
@@ -159,6 +152,7 @@ img {
 
 .nav__social{
     padding-top: 2.4rem;
+    cursor: pointer;
 }
 
 .nav__social-icon{
