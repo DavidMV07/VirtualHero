@@ -19,9 +19,9 @@ function Footer () {
         <div className="footer-section">
           <h4>Contacto</h4>
           <ul>
-            <li>📧 virtualhero@email.com</li>
+            <li>📧 virtualhero@gmail.com</li>
             <li>📞 +57 310 123 4567</li>
-            <li>📍 Cali, Colombia</li>
+            <li>📍 Santader de Quilichao, Colombia</li>
           </ul>
         </div>
       </div>

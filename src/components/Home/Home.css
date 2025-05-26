@@ -4,9 +4,11 @@
     justify-content: space-between;
     align-items: flex-start;
     padding: 2rem;
-    background-color: #f9f9f9;
     color: #333;
     gap: 2rem;
+}
+.Home__welcome{
+    color: #fff;
 }
 
 .Home__Vision,

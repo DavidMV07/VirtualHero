@@ -4,13 +4,6 @@
     box-sizing: border-box;
 }
 
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f9fafb; /* Fondo general */
-    color: #2d3748; /* Texto general */
-    line-height: 1.6;
-}
-
 .CrudContainer {
     padding: 2rem;
     max-width: 48rem; /* 768px */
