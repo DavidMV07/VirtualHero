@@ -9,14 +9,6 @@ const Header = () => {
     window.location.href = '/login';
   };
 
-  const handleToggleMenu = () => {
-    setMenuOpen(!menuOpen);
-  };
-
-  const handleCloseMenu = () => {
-    setMenuOpen(false);
-  };
-
   const handleLinkClick = () => {
     setMenuOpen(false);
   };
