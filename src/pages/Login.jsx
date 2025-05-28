@@ -45,7 +45,7 @@ const Login = () => {
                 <div className="login-right">
                     <div className="login-form">
                         <div className="login-header">
-                            <h3>Login</h3>
+                            <h3>Inicio</h3>
                             <p>Welcome Back! Please enter your details.</p>
                         </div>
                         <div className="login-inputs">
