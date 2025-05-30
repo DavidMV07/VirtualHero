@@ -1,3 +1,8 @@
+body,html, #root{
+    height: 100%;
+    margin: 0;
+}
+
 body{
     font-family: 'Poppins', sans-serif;
     background: linear-gradient(45deg, #000106, 
@@ -6,4 +11,16 @@ body{
     #415AB1, 
     #7A7EAD);
     color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.Custom {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
 }
