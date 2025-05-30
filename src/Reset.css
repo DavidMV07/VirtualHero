@@ -1,184 +1,75 @@
-/* CSS Reset */
+/* https://piccalil.li/blog/a-more-modern-css-reset/ */
+
+/* Normas de dimensionamiento de las cajas */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Evitar que se infle el tamaño de letra */
 html {
-    line-height: 1.15;
-    -webkit-text-size-adjust: 100%;
-  }
-  
-  body {
-    margin: 0;
-  }
-  
-  main {
-    display: block;
-  }
-  
-  h1 {
-    font-size: 2em;
-    margin: 0.67em 0;
-  }
-  
-  hr {
-    box-sizing: content-box;
-    height: 0;
-    overflow: visible;
-  }
-  
-  pre {
-    font-family: monospace, monospace;
-    font-size: 1em;
-  }
-  
-  a {
-    background-color: transparent;
-  }
-  
-  abbr[title] {
-    border-bottom: none;
-    text-decoration: underline;
-    text-decoration: underline dotted;
-  }
-  
-  b,
-  strong {
-    font-weight: bolder;
-  }
-  
-  code,
-  kbd,
-  samp {
-    font-family: monospace, monospace;
-    font-size: 1em;
-  }
-  
-  small {
-    font-size: 80%;
-  }
-  
-  sub,
-  sup {
-    font-size: 75%;
-    line-height: 0;
-    position: relative;
-    vertical-align: baseline;
-  }
-  
-  sub {
-    bottom: -0.25em;
-  }
-  
-  sup {
-    top: -0.5em;
-  }
-  
-  img {
-    border-style: none;
-  }
-  
-  button,
-  input,
-  optgroup,
-  select,
-  textarea {
-    font-family: inherit;
-    font-size: 100%;
-    line-height: 1.15;
-    margin: 0;
-  }
-  
-  button,
-  input {
-    overflow: visible;
-  }
-  
-  button,
-  select {
-    text-transform: none;
-  }
-  
-  button,
-  [type="button"],
-  [type="reset"],
-  [type="submit"] {
-    -webkit-appearance: button;
-    appearance: button;
-  }
-  
-  button::-moz-focus-inner,
-  [type="button"]::-moz-focus-inner,
-  [type="reset"]::-moz-focus-inner,
-  [type="submit"]::-moz-focus-inner {
-    border-style: none;
-    padding: 0;
-  }
-  
-  button:-moz-focusring,
-  [type="button"]:-moz-focusring,
-  [type="reset"]:-moz-focusring,
-  [type="submit"]:-moz-focusring {
-    outline: 1px dotted ButtonText;
-  }
-  
-  fieldset {
-    padding: 0.35em 0.75em 0.625em;
-  }
-  
-  legend {
-    box-sizing: border-box;
-    color: inherit;
-    display: table;
-    max-width: 100%;
-    padding: 0;
-    white-space: normal;
-  }
-  
-  progress {
-    vertical-align: baseline;
-  }
-  
-  textarea {
-    overflow: auto;
-  }
-  
-  [type="checkbox"],
-  [type="radio"] {
-    box-sizing: border-box;
-    padding: 0;
-  }
-  
-  [type="number"]::-webkit-inner-spin-button,
-  [type="number"]::-webkit-outer-spin-button {
-    height: auto;
-  }
-  
-  [type="search"] {
-    -webkit-appearance: textarea;
-    appearance: textarea;
-    outline-offset: -2px;
-  }
-  
-  [type="search"]::-webkit-search-decoration {
-    -webkit-appearance: none;
-  }
-  
-  ::-webkit-file-upload-button {
-    -webkit-appearance: button;
-    font: inherit;
-  }
-  
-  details {
-    display: block;
-  }
-  
-  summary {
-    display: list-item;
-  }
-  
-  template {
-    display: none;
-  }
-  
-  [hidden] {
-    display: none;
-  }
-  
-  
+  -moz-text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+}
+
+/* Eliminar el margen por defecto en favor de un mejor control en CSS de autoría */
+body, h1, h2, h3, h4, p,
+figure, blockquote, dl, dd {
+  margin-block-end: 0;
+}
+
+/* Eliminar estilos de lista en elementos ul, ol con rol de lista, lo que sugiere que se eliminará el estilo por defecto */
+ul[role='list'],
+ol[role='list'] {
+  list-style: none;
+}
+
+/* Establecer los valores predeterminados del cuerpo central */
+body {
+  min-height: 100vh;
+  line-height: 1.5;
+}
+
+/* Reduzca la altura de las líneas de los títulos y los elementos interactivos. */
+h1, h2, h3, h4,
+button, input, label {
+  line-height: 1.1;
+}
+
+/* Equilibrar el ajuste del texto en los títulos */
+h1, h2,
+h3, h4 {
+  text-wrap: balance;
+}
+
+/* Los elementos A que no tienen clase reciben estilos por defecto */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+  color: currentColor;
+}
+
+/* Facilitar el trabajo con imágenes */
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+/* Heredar fuentes para entradas y botones */
+input, button,
+textarea, select {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+/* Asegúrese de que las áreas de texto sin el atributo rows no sean minúsculas */
+textarea:not([rows]) {
+  min-height: 10em;
+}
+
+/* Cualquier cosa a la que se haya anclado debe tener un margen de desplazamiento adicional */
+:target {
+  scroll-margin-block: 5ex;
+}

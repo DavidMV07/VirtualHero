@@ -1,10 +1,6 @@
 import "./Home.css";
 
 function Home() {
-  const video = document.querySelector('video');
-  window.addEventListener('load', () => {
-    video.play();
-  });
   
   return ( 
     <div className="Home__container">

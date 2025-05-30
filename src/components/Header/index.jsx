@@ -22,90 +22,60 @@ const Header = () => {
   };
 
   return (
+    //<li className="nav__item dropdown">
+    //<ion-icon name="menu-outline" className="header__toggle" id="nav-toggle" onClick={handleToggleMenu}></ion-icon> 
+    //<a href="#" className="header__logo">Virtual Hero</a>
+    //<ion-icon name="close-outline" className="nav__close" id="nav-close" onClick={handleCloseMenu}></ion-icon>
     <header className="header">
-      <a href="#" className="header__logo">Virtual Hero</a>
+      <div className='Logo__Section'>
+        <img src="LOGO.png" alt="Logo de la Empresa" className='Logo'/>
+        <span className='brand__name'>Virtual Hero</span>
+      </div>
+      <input type="checkbox" id="menu__toggle" className="menu__toggle" />
+      <label for="menu__toggle" className="Menucheck">&#9776;</label>
 
-      <ion-icon
-        name="menu-outline"
-        className="header__toggle"
-        id="nav-toggle"
-        onClick={handleToggleMenu}
-      ></ion-icon>
+      <nav className={`nav__links${menuOpen ? ' show' : ''}`} id="nav-menu">
+        <a href="../Home" className='nav__item' onClick={handleLinkClick}>
+          <i className="ri-home-4-fill"></i> Home
+        </a>
+         
+        {/* Accessories con Dropdown */}
+        <button className="nav__item dropdown-btn" onClick={() => setCategoryDropdownOpen(!categoryDropdownOpen)}>
+          <i className="ri-store-3-fill"></i> Accessories ▾
+        </button>
+        {categoryDropdownOpen && (
+          <ul className="dropdown-content">
+            <li><a onClick={() => handleCategoryClick("Todos")}>Todos</a></li>
+            <li><a onClick={() => handleCategoryClick("Periféricos")}>Periféricos</a></li>
+            <li><a onClick={() => handleCategoryClick("Audio")}>Audio</a></li>
+            <li><a onClick={() => handleCategoryClick("Pantallas")}>Pantallas</a></li>
+            <li><a onClick={() => handleCategoryClick("Mobiliario")}>Mobiliario</a></li>
+            <li><a onClick={() => handleCategoryClick("Computadores")}>Computadores</a></li>
+            <li><a onClick={() => handleCategoryClick("Almacenamiento")}>Almacenamiento</a></li>
+          </ul>
+        )}
 
-      <nav className={`nav${menuOpen ? ' show' : ''}`} id="nav-menu">
-        <div className="nav__content bd-grid">
-          <ion-icon
-            name="close-outline"
-            className="nav__close"
-            id="nav-close"
-            onClick={handleCloseMenu}
-          ></ion-icon>
-          <div className="nav__perfil">
-            <div className="nav__img">
-              <img src="LOGO.png" alt="Logo de la Empresa" />
-            </div>
-            <div>
-              <a href="#" className="nav__name">Virtual Hero</a>
-            </div>
-          </div>
-
-          <div className="nav__menu">
-            <ul className="nav__list">
-              <li className="nav__item">
-                <a href="../Home" className="nav__link active" onClick={handleLinkClick}>
-                  <i className="ri-home-4-fill"></i> Home
-                </a>
-              </li>
-
-              {/* Accessories con Dropdown */}
-              <li className="nav__item dropdown">
-                <button
-                  className="nav__link dropdown-btn"
-                  onClick={() => setCategoryDropdownOpen(!categoryDropdownOpen)}
-                >
-                  <i className="ri-store-3-fill"></i> Accessories ▾
-                </button>
-                {categoryDropdownOpen && (
-                  <ul className="dropdown-content">
-                    <li><a onClick={() => handleCategoryClick("Todos")}>Todos</a></li>
-                    <li><a onClick={() => handleCategoryClick("Periféricos")}>Periféricos</a></li>
-                    <li><a onClick={() => handleCategoryClick("Audio")}>Audio</a></li>
-                    <li><a onClick={() => handleCategoryClick("Pantallas")}>Pantallas</a></li>
-                    <li><a onClick={() => handleCategoryClick("Mobiliario")}>Mobiliario</a></li>
-                    <li><a onClick={() => handleCategoryClick("Computadores")}>Computadores</a></li>
-                    <li><a onClick={() => handleCategoryClick("Almacenamiento")}>Almacenamiento</a></li>
-                  </ul>
-                )}
-              </li>
-
-              <li className="nav__item">
-                <a href="../ProductCRUD" className="nav__link" onClick={handleLinkClick}>
-                  <i className="ri-admin-fill"></i> Admin
-                </a>
-              </li>
-              <li className="nav__item">
-                <a href="../Services" className="nav__link" onClick={handleLinkClick}>
-                  <i className="ri-service-fill"></i> Services
-                </a>
-              </li>
-              <li className="nav__item">
-                <a href="../Contact" className="nav__link" onClick={handleLinkClick}>
-                  <i className="ri-contacts-fill"></i> Contact
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          <div className="nav__social">
-            <a className="nav__social-icon" onClick={handleLoginClick}>
-              <button className="ri-user-3-fill"></button>Login
-            </a>
-            <a className="nav__social-icon" onClick={() => (window.location.href = '/signup')}>
-              <button className="ri-user-add-fill"></button>Register
-            </a>
-          </div>
-        </div>
+        <a href="../ProductCRUD" className="nav__item" onClick={handleLinkClick}>
+          <i className="ri-admin-fill"></i> Admin
+        </a>
+          
+        <a href="../Services" className="nav__item" onClick={handleLinkClick}>
+          <i className="ri-service-fill"></i> Services
+        </a>
+          
+        <a href="../Contact" className="nav__item" onClick={handleLinkClick}>
+          <i className="ri-contacts-fill"></i> Contact
+        </a>
       </nav>
+
+      <div class="auth-buttons desktop-only">
+        <a className='ri-user-3-fill btn User__Login' onClick={handleLoginClick}>
+          <span className='Span__Users'>Log in</span>
+        </a>
+        <a className='ri-user-add-fill btn User__Register' onClick={() => (window.location.href = '/signup')}>
+          <span className='Span__Users'>Sign up</span>
+        </a>
+      </div>
     </header>
   );
 };

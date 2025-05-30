@@ -1,258 +1,128 @@
-/* ====== GOOGLE FONTS ====== */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
-
-/* ====== Variables CSS ====== */
-:root {
-  --header-height: 3rem;
-
-  /* ====== COLORES ====== */
-  --first-color: #3664F4;
-  --dark-color: #070D1F;
-  --dark-color-alt: #282B3A;
-  --white-color: #E6E7E9;
-
-  /* ====== FUENTE y TIPOGRAFIA ====== */
-  --body-font: 'Poppins', sans-serif;
-  --normal-font-size: 0.938rem;
-  --small-font-size: 0.813rem;
-
-  /* ====== z index ====== */
-  --z-fixed: 1;
-}
-
-/* ==== MEDIA QUERY (mantener las Variables responsive) ==== */
-@media screen and (min-width: 768px) {
-  :root {
-    --normal-font-size: 1rem;
-    --small-font-size: 0.875rem;
-  }
-}
-
-/* ====== BASE ====== */
-*,
-::before,
-::after {
-  box-sizing: border-box;
-}
-
-ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-a {
-  text-decoration: none;
-}
-
-img {
-  max-width: 100%;
-  height: auto;
-}
-
-.bd-grid {
-  max-width: 1024px;
-  display: grid;
-  grid-template-columns: 100%;
-  margin-left: 1.5rem;
-  margin-right: 1.5rem;
-}
-
-/* ====== HEADER ====== */
-.header {
-  width: 100%;
-  height: var(--header-height);
-  position: fixed;
-  top: 0;
-  left: 0;
-  padding: 0 1.5rem;
-  background-color: transparent;
-  z-index: var(--z-fixed);
+.header{
   display: flex;
+  align-items: center;
   justify-content: space-between;
+  padding: 10px 20px;
+  height: 80px;
+  position: relative;
+  font-family: 'Poppins', sans-serif;
+}
+
+.Logo__Section{
+  display: flex;
   align-items: center;
 }
 
-.header__logo {
-  color: var(--white-color);
-}
-
-.header__toggle {
-  font-size: 1.5rem;
-  color: var(--white-color);
-  cursor: pointer;
-}
-
-/* ====== NAV ====== */
-@media screen and (max-width: 767px) {
-  .nav {
-    position: fixed;
-    top: 0;
-    left: -100%;
-    background-color: var(--dark-color);
-    color: var(--white-color);
-    width: 100%;
-    height: 100vh;
-    padding: 1.5rem 0;
-    z-index: var(--z-fixed);
-    transition: 0.5s;
-  }
-}
-
-.nav__content {
-  height: 100%;
-  grid-template-rows: max-content 1fr max-content;
-  row-gap: 2rem;
-}
-
-.nav__close {
-  position: absolute;
-  right: 1.5rem;
-  font-size: 1.3rem;
-  padding: 0.25rem;
-  background-color: var(--dark-color-alt);
-  border-radius: 50%;
-  cursor: pointer;
-}
-
-.nav__img {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 0.8rem;
-  width: 100px;
+.Logo{
   height: 100px;
-  border-radius: 50%;
-  overflow: hidden;
 }
 
-.nav__img img {
-  width: 100%;
+.brand__name {
+  font-size: 1.5rem;
+  font-style: italic;
 }
 
-.nav__name {
-  display: block;
-  color: var(--white-color);
-}
-
-.nav__profesion {
-  font-size: var(--small-font-size);
-}
-
-.nav__menu {
-  align-self: center;
+.nav__links {
+  display: flex;
+  gap: 20px;
+  align-items: center;
 }
 
 .nav__item {
-  margin: 2.5rem;
+  text-decoration: none;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  transition:  0.3s, color 0.3s;
 }
 
-.nav__link {
-  color: var(--white-color);
+.nav__item:hover {
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
-.nav__social{
-    padding-top: 2.4rem;
-    cursor: pointer;
+.auth-buttons,
+.auth-buttons-mobile{
+  display: flex;
+  gap: 10px;
 }
 
-.nav__social-icon{
-    font-size: 1rem;
-    color: var(--white-color);
-    margin-right: 1rem;
+.Span__Users{
+  font-family: 'Poppins', sans-serif;
+}
+.btn{
+  padding: 8px 18px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition:  0.3s;
 }
 
-.nav__social-icon:hover {
-  color: var(--first-color);
+.User__Login{ 
+  background-color: #1a1a1a;
+  color: white;
 }
 
-/* Aparecer menu */
-.show {
-  left: 0;
+.User__Register{
+  background-color: #fff;
+  color: #1a1a1a;
 }
 
-/* Active menu */
-.active {
-  color: var(--first-color);
+.User__Register:hover,
+.User__Login:hover {
+  opacity: 0.8;
 }
 
-/* ============== MEDIA QUERIES =============== */
-@media screen and (min-width: 768px) {
-  body {
-    margin: 0;
+/* HAMBURGER MENU */
+.menu__toggle {
+  display: none;
+}
+
+.Menucheck {
+  display: none;
+  font-size: 28px;
+  cursor: pointer;
+  user-select: none;
+  color: white;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .Menucheck {
+    display: block;
   }
 
-  .header {
-    height: calc(var(--header-height) + 3rem);
-  }
-
-  .header__logo,
-  .header__toggle {
+  .nav__links {
     display: none;
+    position: absolute;
+    top: 80px;
+    left: 0;
+    right: 0;
+    background: #1e2a78;
+    flex-direction: column;
+    padding: 20px;
+    gap: 15px;
+    z-index: 1000;
   }
 
-  .nav {
-    width: 100%;
-  }
-
-  .nav__content {
-    grid-template-columns: repeat(3, max-content);
-    grid-template-rows: 1fr;
-    column-gap: 1rem;
-    justify-content: space-between;
-  }
-
-  .nav__close,
-  span {
-    display: none;
-  }
-
-  .nav__perfil {
-    display: flex;
-    align-items: center;
-  }
-
-    .nav__img{
-        width: 100%;
-        height: 100%;
-        margin-right: 0.5rem;
-        margin-bottom: 0;
-        align-items: center;
-    }
-
-  .nav__img img {
-    width: 100px;
-  }
-
-  .nav__list {
+  .menu__toggle:checked + .Menucheck + .nav__links {
     display: flex;
   }
 
-  .nav__item {
-    margin: 0 0.25rem;
+  .auth-buttons {
+    display: none;
   }
 
-  .nav__link {
-    padding: 0.5rem 0.8rem;
-    border-radius: 0.25rem;
+  .auth-buttons-mobile {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
   }
 
-  .nav__link:hover {
-    background-color: var(--first-color);
-  }
-
-  .active {
-    background-color: var(--first-color);
-    color: var(--white-color);
+  .desktop-only {
+    display: none;
   }
 }
-
-@media screen and (min-width: 1024px) {
-  .bd-grid {
-    margin-left: auto;
-    margin-right: auto;
-  }
-}
-
 /* ======= DROPDOWN ======= */
 .dropdown {
   position: relative;
@@ -264,7 +134,7 @@ img {
   color: white;
   font: inherit;
   cursor: pointer;
-  padding: 0;
+  padding: 8px 16px;
   display: flex;
   align-items: center;
   gap: 6px;
@@ -274,7 +144,6 @@ img {
   position: absolute;
   top: 100%;
   left: 0;
-  background-color: var(--dark-color-alt);
   padding: 1rem;
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);

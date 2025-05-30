@@ -1,39 +1,9 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-}
-@keyframes moveGradient {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-  
 body{
-  width: 100%;
-  min-height: 100dvh;
-  background: linear-gradient(-135deg, #7A8ACA,#384C94,#212E73, #131E53,#080E2B);
-  background-size: 400% 400%;
-  animation: moveGradient 10s ease infinite;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
-  padding: 2rem;
-  color: #FFF;
-  transition: all 0.3s ease-in-out;
-}
-  
-.Custom{
-    display: grid;
-    min-height: 100dvh;
-    grid-template-rows:
-      auto 1fr auto;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(45deg, #000106, 
+    #172463,
+    #313F8D, 
+    #415AB1, 
+    #7A7EAD);
+    color: white;
 }

@@ -9,21 +9,16 @@ import { CategoryProvider } from "./Context/CategoryContext";
 
 function App() {
   return (
-    <CategoryProvider>
-      
-        <div className="Custom">  
-          <BrowserRouter>     
-              <Header />
-              <Main />
-              <Footer />
-          </BrowserRouter>
-        </div>
-    </CategoryProvider>
+    <div className="Custom">  
+      <CategoryProvider> 
+        <BrowserRouter>     
+          <Header />
+          <Main />
+          <Footer />
+        </BrowserRouter>
+      </CategoryProvider>
+    </div>
   );
 }
 
 export default App;
-
-
-//{/* Renderiza el Header solo si no estás en la página de login o signup */}
-//     {location.pathname !== '/login' && location.pathname !== '/signup' && <Header />}
