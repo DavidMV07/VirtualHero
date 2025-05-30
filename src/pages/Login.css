@@ -1,0 +1,196 @@
+/* Fondo general para centrar el login */
+.login-bg {
+  min-height: 100vh;
+  width: 100vw;
+  background: linear-gradient(135deg, #0a1832 0%, #1e3358 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0; left: 0;
+  z-index: -1;
+}
+
+/* Contenedor principal del login */
+.login-container {
+  background: #071728;
+  padding: 2.8rem 2.2rem 2.2rem 2.2rem;
+  border-radius: 28px;
+  box-shadow: 0 16px 48px 0 rgba(37,99,235,0.18), 0 1.5px 0 #2563eb1a;
+  max-width: 400px;
+  width: 100%;
+  margin: 60px auto 0 auto; /* Baja la ventana */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.4rem;
+  border: 2.5px solid #2563eb33;
+  animation: login-fadein 0.7s;
+  position: relative;
+  transition: box-shadow 0.3s, border 0.3s;
+}
+
+@keyframes login-fadein {
+  from { opacity: 0; transform: translateY(30px);}
+  to { opacity: 1; transform: translateY(0);}
+}
+
+.login-container:focus-within {
+  box-shadow: 0 20px 60px 0 rgba(37,99,235,0.22), 0 1.5px 0 #2563eb44;
+  border: 3px solid #2563eb77;
+}
+
+/* Logo/avatar en la parte superior */
+.login-avatar {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #2563eb 60%, #38bdf8 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 0.7rem auto;
+  box-shadow: 0 2px 12px #2563eb22;
+  font-size: 2.7rem;
+  font-weight: 900;
+  color: #fff;
+  border: 3px solid #fff2;
+}
+
+/* Subtítulo o mensaje de bienvenida */
+.login-subtitle {
+  text-align: center;
+  color: #e0e7ef;
+  font-size: 1.18rem;
+  margin-bottom: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12px;
+  text-shadow: 0 1px 4px #0003;
+}
+
+/* Título del login */
+.login-title {
+  text-align: center;
+  font-size: 3.5rem; /* Más grande */
+  font-weight: 900;
+  color: #fff;
+  margin-bottom: 1.2rem; /* Más espacio debajo */
+  letter-spacing: 1.5px;
+  text-shadow: 0 6px 32px #2563eb55, 0 2px 4px #0006;
+  background: linear-gradient(90deg, #2563eb 0%, #38bdf8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 4.5rem; /* Asegura altura para centrar verticalmente */
+}
+
+/* Inputs del login */
+.login-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+  margin-bottom: 1.2rem;
+}
+
+.login-label {
+  font-size: 1.13rem;
+  color: #e0e7ef;
+  font-weight: 700;
+  margin-bottom: 0.13rem;
+  letter-spacing: 0.13px;
+  padding-left: 2px;
+  text-shadow: 0 1px 2px #0002;
+}
+
+.login-input {
+  width: 100%;
+  padding: 1.05rem 1.1rem;
+  border: 2px solid #23395d;
+  border-radius: 14px;
+  font-size: 1.18rem;
+  font-weight: 600;
+  background: #f1f5f9;
+  color: #1e293b;
+  transition: border 0.2s, box-shadow 0.2s;
+  box-shadow: 0 1px 8px rgba(60,60,60,0.09);
+  margin-bottom: 0.1rem;
+}
+
+.login-input:focus {
+  border-color: #38bdf8;
+  outline: none;
+  box-shadow: 0 0 0 2px #38bdf855;
+}
+
+/* Botón del login */
+.login-button {
+  width: 100%;
+  padding: 1.1rem 0;
+  background: linear-gradient(90deg, #2563eb 0%, #38bdf8 100%);
+  color: #f9fafb;
+  font-size: 1.28rem;
+  font-weight: 900;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+  box-shadow: 0 2px 18px rgba(60,60,60,0.15);
+  letter-spacing: 0.2px;
+  margin-top: 0.4rem;
+}
+
+.login-button:hover {
+  background: linear-gradient(90deg, #1d4ed8 0%, #0ea5e9 100%);
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 8px 28px rgba(60,60,60,0.18);
+}
+
+/* Mensaje de error del login */
+.login-error {
+  color: #f87171;
+  background: #2d1a1a;
+  border-radius: 8px;
+  padding: 0.7rem 1.1rem;
+  font-size: 1.15rem;
+  font-weight: 700;
+  text-align: center;
+  border: 1.5px solid #fecaca;
+  margin-bottom: 0.3rem;
+}
+
+/* Enlace de registro del login */
+.login-register-link {
+  text-align: center;
+  margin-top: 0.8rem;
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.login-register-link a {
+  color: #38bdf8;
+  text-decoration: none;
+  font-weight: 700;
+  transition: color 0.2s;
+  text-shadow: 0 1px 2px #0002;
+}
+
+.login-register-link a:hover {
+  text-decoration: underline;
+  color: #fff;
+}
+
+/* Placeholders en español */
+.login-input::placeholder {
+  font-size: 1.13rem;
+  color: #64748b;
+  font-weight: 500;
+  opacity: 1;
+  font-style: italic;
+}
+
+/* Ejemplo: en tu componente React, usa placeholder="Correo electrónico" o "Contraseña" */

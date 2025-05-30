@@ -66,6 +66,103 @@
     transition: background-color 0.3s ease, transform 0.2s ease;
   }
 
+  /* Carrito de compras */
+.cart-container {
+  position: fixed;
+  top: 30px;
+  right: 30px;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 4px 24px rgba(37,99,235,0.13);
+  padding: 18px 22px 18px 22px;
+  z-index: 1000;
+  min-width: 260px;
+  max-width: 340px;
+  min-height: 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cart-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #2563eb;
+  margin-bottom: 8px;
+}
+
+.cart-items-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 8px 0;
+  max-height: 180px;
+  overflow-y: auto;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1rem;
+  margin-bottom: 5px;
+}
+
+.cart-item-name {
+  flex: 1;
+  color: #1e293b;
+}
+
+.cart-item-qty {
+  margin: 0 8px;
+  color: #2563eb;
+  font-weight: 700;
+}
+
+.cart-remove-btn {
+  background: none;
+  border: none;
+  color: #f87171;
+  font-size: 1.1rem;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.cart-total {
+  font-weight: bold;
+  color: #2563eb;
+  font-size: 1.1rem;
+  margin-top: 6px;
+  text-align: right;
+}
+
+.cart-checkout-btn {
+  background: linear-gradient(90deg, #2563eb 0%, #38bdf8 100%);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 0;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: background 0.2s;
+}
+
+.cart-checkout-btn:hover {
+  background: linear-gradient(90deg, #1d4ed8 0%, #0ea5e9 100%);
+}
+
+.cart-badge {
+  background: #f87171;
+  color: #fff;
+  border-radius: 50%;
+  padding: 2px 8px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  margin-left: 6px;
+  vertical-align: middle;
+}
+
 @media (max-width: 768px) {
     .products-grid {
       grid-template-columns: 1fr 1fr; /* 2 columnas en tablets */
@@ -81,4 +178,3 @@
       width: 90%; /* Hacemos el chat más pequeño en móvil */
     }
 }
-  

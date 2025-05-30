@@ -46,33 +46,46 @@ const Login = () => {
                     <div className="login-form">
                         <div className="login-header">
                             <h3>Login</h3>
-                            <p>Welcome Back! Please enter your details.</p>
+                            <p></p>
                         </div>
                         <div className="login-inputs">
-                            <input
-                                type="email"
-                                placeholder="Email"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                            />
-                            <input
-                                type="password"
-                                placeholder="Password"
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                            />
+                            <div className="login-input-group">
+                                <label className="login-label" htmlFor="email">Correo electrónico</label>
+                                <input
+                                    className="login-input"
+                                    id="email"
+                                    type="email"
+                                    placeholder="Correo electrónico"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    autoComplete="username"
+                                />
+                            </div>
+                            <div className="login-input-group">
+                                <label className="login-label" htmlFor="password">Contraseña</label>
+                                <input
+                                    className="login-input"
+                                    id="password"
+                                    type="password"
+                                    placeholder="Contraseña"
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                    autoComplete="current-password"
+                                />
+                            </div>
                         </div>
                         <button
                             className="login-button"
                             onClick={signInWithEmail}
                             disabled={authing}
                         >
-                            Log In With Email and Password
+                            Iniciar sesión 
+
                         </button>
                         {error && <div className="login-error">{error}</div>}
                         <div className="signup-link">
                             <p>
-                                Don't have an account? <a href="/signup">Sign Up</a>
+                                ¿No tienes una cuenta? <a href="/signup">CREAR </a>
                             </p>
                         </div>
                     </div>
