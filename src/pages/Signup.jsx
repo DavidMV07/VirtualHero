@@ -44,45 +44,52 @@ const Signup = () => {
 
     return (
         <div className="signup-page">
-            <div className="signup-left"></div>
-            <div className="signup-right">
-                <div className="signup-form-container">
-                    <div className="signup-header">
-                        <h3>Sign Up</h3>
-                        <p>Welcome! Please enter your information below to begin.</p>
-                    </div>
-                    <div>
+            <div className="signup-form-container">
+                <div className="signup-header">
+                    <h3>Sign Up</h3>
+                    <p>Welcome! Please enter your information below to begin.</p>
+                </div>
+                <div className="Signup-inputs">
+                    <div className="Signup-input-group">
+                        <label className='Signup-label' htmlFor='email'>Email</label>
                         <input
                             type="email"
                             placeholder="Email"
                             className="signup-input"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
-                        />
+                            />
+                    </div>
+                    <div className='Signup-input-group'>
+                        <label className='Signup-label' htmlFor='password'>Password</label>
                         <input
                             type="password"
                             placeholder="Password"
                             className="signup-input"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
-                        />
+                            />
+                    </div>
+                    <div className='Signup-input-group'>
+                        <label className='Signup-label' htmlFor='confirmPassword'>Confirm Password</label>
                         <input
                             type="password"
                             placeholder="Re-Enter Password"
                             className="signup-input"
                             value={confirmPassword}
                             onChange={(e) => setConfirmPassword(e.target.value)}
-                        />
+                            />
                     </div>
-                    {error && <div className="text-red-500 mb-4">{error}</div>}
-                    <button
-                        onClick={signUpWithEmail}
-                        disabled={authing}
-                        className="signup-button"
-                    >
-                        Sign Up With Email and Password
-                    </button>
                 </div>
+
+                {error && <div className="text-red-500 mb-4">{error}</div>}
+                <button
+                    onClick={signUpWithEmail}
+                    disabled={authing}
+                    className="signup-button"
+                >
+                    Sign Up With Email and Password
+                </button>
                 <div className="signup-link">
                     <p>
                         Already have an account? <a href="/login">Log In</a>

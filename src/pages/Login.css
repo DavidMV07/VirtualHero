@@ -1,5 +1,5 @@
 /* Fondo general para centrar el login */
-.login-bg {
+/*.login-bg {
   min-height: 100vh;
   width: 100vw;
   background: linear-gradient(135deg, #0a1832 0%, #1e3358 100%);
@@ -9,7 +9,7 @@
   position: fixed;
   top: 0; left: 0;
   z-index: -1;
-}
+} */
 
 /* Contenedor principal del login */
 .login-container {
@@ -30,10 +30,10 @@
   transition: box-shadow 0.3s, border 0.3s;
 }
 
-@keyframes login-fadein {
+/*@keyframes login-fadein {
   from { opacity: 0; transform: translateY(30px);}
   to { opacity: 1; transform: translateY(0);}
-}
+}*/
 
 .login-container:focus-within {
   box-shadow: 0 20px 60px 0 rgba(37,99,235,0.22), 0 1.5px 0 #2563eb44;
@@ -41,7 +41,7 @@
 }
 
 /* Logo/avatar en la parte superior */
-.login-avatar {
+/*.login-avatar {
   width: 70px;
   height: 70px;
   border-radius: 50%;
@@ -55,10 +55,10 @@
   font-weight: 900;
   color: #fff;
   border: 3px solid #fff2;
-}
+}*/
 
 /* Subtítulo o mensaje de bienvenida */
-.login-subtitle {
+/*.login-subtitle {
   text-align: center;
   color: #e0e7ef;
   font-size: 1.18rem;
@@ -66,15 +66,15 @@
   font-weight: 700;
   letter-spacing: 0.12px;
   text-shadow: 0 1px 4px #0003;
-}
+} */
 
 /* Título del login */
-.login-title {
+/*.login-title {
   text-align: center;
-  font-size: 3.5rem; /* Más grande */
+  font-size: 3.5rem; 
   font-weight: 900;
   color: #fff;
-  margin-bottom: 1.2rem; /* Más espacio debajo */
+  margin-bottom: 1.2rem; 
   letter-spacing: 1.5px;
   text-shadow: 0 6px 32px #2563eb55, 0 2px 4px #0006;
   background: linear-gradient(90deg, #2563eb 0%, #38bdf8 100%);
@@ -85,9 +85,8 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  min-height: 4.5rem; /* Asegura altura para centrar verticalmente */
-}
-
+  min-height: 4.5rem; 
+} */
 /* Inputs del login */
 .login-input-group {
   display: flex;

@@ -40,21 +40,20 @@ const Header = () => {
         </a>
          
         {/* Accessories con Dropdown */}
-        <button className="nav__item dropdown-btn" onClick={() => setCategoryDropdownOpen(!categoryDropdownOpen)}>
-          <i className="ri-store-3-fill"></i> Accessories ▾
-        </button>
-        {categoryDropdownOpen && (
-          <ul className="dropdown-content">
-            <li><a onClick={() => handleCategoryClick("Todos")}>Todos</a></li>
-            <li><a onClick={() => handleCategoryClick("Periféricos")}>Periféricos</a></li>
-            <li><a onClick={() => handleCategoryClick("Audio")}>Audio</a></li>
-            <li><a onClick={() => handleCategoryClick("Pantallas")}>Pantallas</a></li>
-            <li><a onClick={() => handleCategoryClick("Mobiliario")}>Mobiliario</a></li>
-            <li><a onClick={() => handleCategoryClick("Computadores")}>Computadores</a></li>
-            <li><a onClick={() => handleCategoryClick("Almacenamiento")}>Almacenamiento</a></li>
-          </ul>
-        )}
-
+          <button className="nav__item dropdown-btn" onClick={() => setCategoryDropdownOpen(!categoryDropdownOpen)}>
+            <i className="ri-store-3-fill"></i> Accessories ▾
+          </button>
+          {categoryDropdownOpen && (
+            <ul className="dropdown-content">
+              <li><a onClick={() => handleCategoryClick("Todos")}>Todos</a></li>
+              <li><a onClick={() => handleCategoryClick("Periféricos")}>Periféricos</a></li>
+              <li><a onClick={() => handleCategoryClick("Audio")}>Audio</a></li>
+              <li><a onClick={() => handleCategoryClick("Pantallas")}>Pantallas</a></li>
+              <li><a onClick={() => handleCategoryClick("Mobiliario")}>Mobiliario</a></li>
+              <li><a onClick={() => handleCategoryClick("Computadores")}>Computadores</a></li>
+              <li><a onClick={() => handleCategoryClick("Almacenamiento")}>Almacenamiento</a></li>
+            </ul>
+          )}
         <a href="../ProductCRUD" className="nav__item" onClick={handleLinkClick}>
           <i className="ri-admin-fill"></i> Admin
         </a>
