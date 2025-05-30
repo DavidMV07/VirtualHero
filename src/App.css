@@ -1,18 +1,21 @@
-body,html, #root{
-    height: 100%;
-    margin: 0;
+body,html{
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(45deg, #000106, 
+  #172463,
+  #313F8D, 
+  #1d327d, 
+  #343ae6);
+  background-size: 400% 400%;
+  animation: gradientMove 15s ease infinite;
 }
 
 body{
-    font-family: 'Poppins', sans-serif;
-    background: linear-gradient(45deg, #000106, 
-    #172463,
-    #313F8D, 
-    #415AB1, 
-    #7A7EAD);
-    color: white;
-    display: flex;
-    flex-direction: column;
+  color: white;
+  display: flex;
+  flex-direction: column;
 }
 
 .Custom {
@@ -21,6 +24,15 @@ body{
   min-height: 100vh;
 }
 
-main {
-  flex: 1;
+
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
