@@ -1,0 +1,64 @@
+.home-container {
+  padding: 4rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Sección bienvenida */
+.welcome-section {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.welcome-section h1 {
+  font-size: 3rem;
+  color: #60a5fa;
+}
+
+.welcome-section h1 span {
+  color: #38bdf8;
+}
+
+.welcome-section p {
+  font-size: 1.2rem;
+  margin-top: 1rem;
+  color: #cbd5e1;
+}
+
+/* Sección visión y misión */
+.vision-mission-section {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .vision-mission-section {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+/* Tarjetas */
+.card {
+  background-color: #1e293b;
+  border-left: 5px solid #38bdf8;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card h2 {
+  color: #38bdf8;
+  margin-bottom: 1rem;
+}
+
+.card p {
+  color: #e2e8f0;
+  line-height: 1.6;
+}
