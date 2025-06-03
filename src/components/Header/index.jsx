@@ -32,7 +32,7 @@ const Header = () => {
         <span className='brand__name'>Virtual Hero</span>
       </div>
       <input type="checkbox" id="menu__toggle" className="menu__toggle" />
-      <label for="menu__toggle" className="Menucheck">&#9776;</label>
+      <label htmlFor="menu__toggle" className="Menucheck">&#9776;</label>
 
       <nav className={`nav__links${menuOpen ? ' show' : ''}`} id="nav-menu">
         <a href="../Home" className='nav__item' onClick={handleLinkClick}>
@@ -67,7 +67,7 @@ const Header = () => {
         </a>
       </nav>
 
-      <div class="auth-buttons desktop-only">
+      <div className="auth-buttons desktop-only">
         <a className='ri-user-3-fill btn User__Login' onClick={handleLoginClick}>
           <span className='Span__Users'>Log in</span>
         </a>

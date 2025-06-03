@@ -5,17 +5,15 @@ body,html{
   font-family: 'Poppins', sans-serif;
   background: linear-gradient(45deg, #000106, 
   #172463,
-  #313F8D, 
-  #1d327d, 
-  #343ae6);
+  #24369c, 
+  #1c3eb8, 
+  #11158b);
   background-size: 400% 400%;
   animation: gradientMove 15s ease infinite;
 }
 
 body{
-  color: white;
-  display: flex;
-  flex-direction: column;
+  color: white; 
 }
 
 .Custom {

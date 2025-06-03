@@ -101,7 +101,7 @@ export default function ProductCRUD() {
 
   return (
     <div className="CrudContainer">
-      <h1>Product CRUD</h1>
+      <h1>Product Management </h1>
       <form onSubmit={handleSubmit} className="FormCrud">
         <input
           type="text"

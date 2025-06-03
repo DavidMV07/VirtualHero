@@ -21,10 +21,9 @@ function Main() {
             <Route path="/ProductCRUD" element={<ProductCRUD />} />
             <Route path="/Contact" element={<Contact />} />
             <Route path="/Login" element={<Login />} />
-            <Route path="/Signup" element={<Signup />} /> {}
+            <Route path="/Signup" element={<Signup />} />
             {/* Redirige rutas no reconocidas */}
             <Route path="*" element={<Navigate to="/" />} />
-            
           </Routes>
           {location.pathname !== '/login' && location.pathname !== '/signup' && <ChatOnline />}
         </div>
