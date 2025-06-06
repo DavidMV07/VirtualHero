@@ -1,56 +1,140 @@
 .home-container {
-  padding: 4rem 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
+  width: 100%;
+  min-height: 100vh;
+  /*background: #0a1a66;*/
+  color: #fff;
+  padding-bottom: 2rem;
 }
 
-/* Sección bienvenida */
-.welcome-section {
-  text-align: center;
-  margin-bottom: 4rem;
+/* Hero principal */
+.hero-section {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 3rem 2rem 2rem 2rem;
+  background: linear-gradient(90deg, #0a1a66 60%, #38bdf8 100%);
+  border-radius:  2rem ;
 }
 
-.welcome-section h1 {
-  font-size: 3rem;
-  color: #60a5fa;
+.hero-content {
+  flex: 1 1 350px;
+  max-width: 600px;
 }
 
-.welcome-section h1 span {
+.hero-content h1 {
+  font-size: 2.8rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.brand {
   color: #38bdf8;
 }
 
-.welcome-section p {
+.hero-content p {
   font-size: 1.2rem;
-  margin-top: 1rem;
-  color: #cbd5e1;
+  margin-bottom: 2rem;
 }
 
-/* Sección visión y misión */
-.vision-mission-section {
+.hero-btn {
+  display: inline-block;
+  background: #38bdf8;
+  color: #0a1a66;
+  padding: 0.8rem 2rem;
+  border-radius: 8px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.hero-btn:hover {
+  background: #0ea5e9;
+  color: #fff;
+}
+
+.hero-image {
+  flex: 1 1 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 2rem;
+  
+}
+
+.hero-image img {
+  max-width: 320px;
+  width: 100%;
+  border-radius: 1rem;
+  box-shadow: 0 8px 32px rgba(56,189,248,0.2);
+}
+
+/* Categorías */
+.categories-section {
+  margin: 3rem 0 2rem 0;
+  text-align: center;
+}
+
+.categories-section h2 {
+  color: #38bdf8;
+  margin-bottom: 1.5rem;
+  font-size: 2rem;
+}
+
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1.5rem;
+  justify-items: center;
+}
+
+.category-card {
+  background: #11205f;
+  border-radius: 1rem;
+  padding: 1rem;
+  width: 140px;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(56,189,248,0.08);
+}
+
+.category-card:hover {
+  transform: translateY(-8px) scale(1.05);
+  box-shadow: 0 8px 32px rgba(56,189,248,0.15);
+  background: #1e40af;
+}
+
+.category-card img {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  margin-bottom: 0.5rem;
+}
+
+.category-card span {
+  color: #fff;
+  font-weight: 500;
+}
+
+/* Visión y Misión */
+.vision-mission-section {
+  display: flex;
+  flex-wrap: wrap;
   gap: 2rem;
+  justify-content: center;
+  margin-top: 3rem;
 }
 
-@media (min-width: 768px) {
-  .vision-mission-section {
-    flex-direction: row;
-    justify-content: space-between;
-  }
-}
-
-/* Tarjetas */
 .card {
-  background-color: #1e293b;
-  border-left: 5px solid #38bdf8;
-  padding: 2rem;
+  background: #11205f;
   border-radius: 1rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s ease;
-}
-
-.card:hover {
-  transform: translateY(-5px);
+  padding: 2rem;
+  max-width: 400px;
+  min-width: 260px;
+  box-shadow: 0 2px 8px rgba(56,189,248,0.08);
 }
 
 .card h2 {
@@ -58,7 +142,17 @@
   margin-bottom: 1rem;
 }
 
-.card p {
-  color: #e2e8f0;
-  line-height: 1.6;
+@media (max-width: 900px) {
+  .hero-section {
+    flex-direction: column;
+    text-align: center;
+    padding: 2rem 1rem;
+  }
+  .hero-image {
+    margin-top: 2rem;
+  }
+  .vision-mission-section {
+    flex-direction: column;
+    align-items: center;
+  }
 }
