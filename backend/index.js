@@ -97,7 +97,7 @@ app.post("/login", (req, res) => {
 
 
     // Enviar token al cliente
-    res.status(200).json({ message: "Inicio de sesión exitoso", token });
+    res.status(200).json({ message: "Inicio de sesión exitoso", token, email: user.email });  
   });
 });
 // Middleware para autenticar el token JWT
@@ -175,8 +175,35 @@ app.delete("/products/:id", (req, res) => {
   });
 });
 
+// Endpoint para guardar mensajes de contacto
+app.post("/contact", (req, res) => {
+  const { name, email, message } = req.body;
+  if (!name || !email || !message) {
+    return res.status(400).json({ message: "Todos los campos son obligatorios" });
+  }
+  const query = "INSERT INTO contact_messages (name, email, message) VALUES (?, ?, ?)";
+  db.query(query, [name, email, message], (err, result) => {
+    if (err) {
+      console.error("Error al guardar mensaje de contacto:", err);
+      return res.status(500).json({ message: "Error al guardar el mensaje" });
+    }
+    res.status(201).json({ message: "Mensaje enviado correctamente" });
+  });
+});
+
+// Endpoint para que el admin vea los mensajes
+app.get("/contact-messages", authenticateToken, (req, res) => {
+  db.query("SELECT * FROM contact_messages ORDER BY created_at DESC", (err, results) => {
+    if (err) {
+      console.error("Error al obtener mensajes de contacto:", err);
+      return res.status(500).json({ message: "Error al obtener mensajes" });
+    }
+    res.json(results);
+  });
+});
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en http://localhost:${PORT}`);
 });
+

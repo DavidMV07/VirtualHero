@@ -7,6 +7,7 @@ import ProductList from '../Accesorios/Productos';
 import Login from '../../pages/Login';
 import Signup from '../../pages/Signup';
 import Home from '../Home';
+import Services from '../Services';
 
 function Main() {
   const location = useLocation(); // Obtiene la ruta actual
@@ -19,6 +20,7 @@ function Main() {
             <Route path="/" element={<Home />} />
             <Route path="/Accesorios" element={<ProductList />} />
             <Route path="/ProductCRUD" element={<ProductCRUD />} />
+            <Route path="/Services" element={<Services />} />
             <Route path="/Contact" element={<Contact />} />
             <Route path="/Login" element={<Login />} />
             <Route path="/Signup" element={<Signup />} />

@@ -3,13 +3,46 @@ import "./Home.css";
 function Home() {
   return (
     <div className="home-container">
-      <section className="welcome-section">
-        <h1>Bienvenido a <span>Virtual Hero</span></h1>
-        <p>
-          Tu tienda de tecnología de confianza. Encuentra productos informáticos y servicios de mantenimiento para todas tus necesidades tecnológicas.
-        </p>
+      {/* Hero principal */}
+      <section className="hero-section">
+        <div className="hero-content">
+          <h1>
+            Bienvenido a <span className="brand">Virtual Hero</span>
+          </h1>
+          <p>
+            Tu tienda de tecnología de confianza. Encuentra productos informáticos y servicios de mantenimiento para todas tus necesidades tecnológicas.
+          </p>
+          <a href="/Accesorios" className="hero-btn">Explora Accesorios</a>
+        </div>
+        <div className="hero-image">
+          <img src="/images/ai-future.jpg" alt="Tecnología" />
+        </div>
       </section>
 
+      {/* Categorías destacadas */}
+      <section className="categories-section">
+        <h2>Categorías Destacadas</h2>
+        <div className="categories-grid">
+          <div className="category-card">
+            <img src="/images/webcam.jpg" alt="Periféricos" />
+            <span>Periféricos</span>
+          </div>
+          <div className="category-card">
+            <img src="/images/headphones.jpg" alt="Audio" />
+            <span>Audio</span>
+          </div>
+          <div className="category-card">
+            <img src="/images/monitor.jpg" alt="Pantallas" />
+            <span>Pantallas</span>
+          </div>
+          <div className="category-card">
+            <img src="/images/chair.jpg" alt="Mobiliario" />
+            <span>Mobiliario</span>
+          </div>
+        </div>
+      </section>
+
+      {/* Visión y Misión */}
       <section className="vision-mission-section">
         <div className="card vision-card">
           <h2>Visión</h2>
