@@ -12,6 +12,8 @@ import Product from "./components/Accesorios/Productos";
 import ItemDetailContainer from "./components/Accesorios/ItemDetailContainer";
 import Home from "./components/Home";
 import Footer from "./components/Footer";
+import Signup from "./pages/Signup";
+import Login from "./pages/Login";
 
 function App() {
   return (
@@ -20,6 +22,8 @@ function App() {
           <Header />
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
             <Route path="/ProductCRUD" element={<ProductCRUD />} />
             <Route path="/Services" element={<Services />} />
             <Route path="/Contact" element={<Contact />} />
