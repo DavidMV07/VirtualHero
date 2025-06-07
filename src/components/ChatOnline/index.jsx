@@ -6,9 +6,7 @@ import ChatForm from "./ChatForm"; // Componente del formulario de entrada de me
 import ChatMessage from "./ChatMessage"; // Componente para renderizar cada mensaje del chat
 import { companyInfo } from "./infocompany"; // Información inicial de la empresa para el chatbot
 
-
-
-const Chatbot= () => {
+const Chatbot = () => {
   // Estado para manejar el historial del chat. Inicia con un mensaje oculto (no visible en el chat)
   const [chatHistory, setChatHistory] = useState([
     {
@@ -77,44 +75,44 @@ const Chatbot= () => {
     });
   }, [chatHistory]);
 
-  return <div className={`container__Chatbot ${showChatbot ? "show-chatbot" : ""}`}>
-    <button onClick={() => setShowChatbot(prev => !prev)} id="chatbot-toggler">
-      <span className="material-symbols-outlined">mode_comment</span>
-      <span className="material-symbols-outlined">close</span>
-    </button>
+  return (
+    <div className={`container ${showChatbot ? "show-chatbot" : ""}`}>
+      <button onClick={() => setShowChatbot(prev => !prev)} id="chatbot-toggler">
+        <span className="material-symbols-outlined">mode_comment</span>
+        <span className="material-symbols-outlined">close</span>
+      </button>
 
-    <div className="chatbot-popup">
-
-      {/* Chatbot Header */}
-      <div className="chat-header">
-        <div className="header-info">
-          <Chatboticon />
-          <h2 className="logo-text">Chatbot</h2>
-        </div>
-        <button onClick={() => setShowChatbot(prev => !prev) } className="material-symbols-outlined">Keyboard_arrow_down</button>
-      </div>
-
-      {/* Chatbot Body */}
-      <div ref={chatBodyRef} className="chat-body">
-        <div className="message bot-message">
-          <Chatboticon />
-          <p className="message-text">
-            Hola 👋 <br/>¿En qué puedo ayudarle hoy?
-          </p>
+      <div className="chatbot-popup">
+        {/* Chatbot Header */}
+        <div className="chat-header">
+          <div className="header-info">
+            <Chatboticon />
+            <h2 className="logo-text">Chatbot</h2>
+          </div>
+          <button onClick={() => setShowChatbot(prev => !prev)} className="material-symbols-outlined">keyboard_arrow_down</button>
         </div>
 
-        {chatHistory.map((chat, index) => (
-          <ChatMessage key={index} chat={chat} />
-        ))}
-      </div>
+        {/* Chatbot Body */}
+        <div ref={chatBodyRef} className="chat-body">
+          <div className="message bot-message">
+            <Chatboticon />
+            <p className="message-text">
+              Hola 👋 <br/>¿En qué puedo ayudarle hoy?
+            </p>
+          </div>
 
-      {/* Chatbot Footer */}
-      <div className="chat-footer">
-        <ChatForm chatHistory={chatHistory} setChatHistory={setChatHistory} generateBotResponse={generateBotResponse} />
+          {chatHistory.map((chat, index) => (
+            !chat.hideInChat && <ChatMessage key={index} chat={chat} />
+          ))}
+        </div>
+
+        {/* Chatbot Footer */}
+        <div className="chat-footer">
+          <ChatForm chatHistory={chatHistory} setChatHistory={setChatHistory} generateBotResponse={generateBotResponse} />
+        </div>
       </div>
     </div>
-  </div>
-
+  );
 };
 
 export default Chatbot;

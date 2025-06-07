@@ -3,9 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import './Signup.css';
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from '../firebase/config';
+import { useAuth } from '../context/AuthContext';
 
 const Signup = () => {
     const navigate = useNavigate();
+    const { updateUserRole } = useAuth();
 
     const [authing, setAuthing] = useState(false);
     const [email, setEmail] = useState('');
@@ -23,18 +25,16 @@ const Signup = () => {
         setError('');
 
         try {
-            await createUserWithEmailAndPassword(auth, email, password);
-            alert("Usuario registrado exitosamente");
-            navigate('/login');
+            const result = await createUserWithEmailAndPassword(auth, email, password);
+            await updateUserRole(result.user.uid, result.user.email, 'user');
+            navigate('/');
         } catch (err) {
             if (err.code === "auth/email-already-in-use") {
-                setError("El correo ya está registrado");
-            } else if (err.code === "auth/invalid-email") {
-                setError("Correo inválido");
+                setError("El correo electrónico ya está registrado");
             } else if (err.code === "auth/weak-password") {
-                setError("La contraseña es muy débil (mínimo 6 caracteres)");
+                setError("La contraseña debe tener al menos 6 caracteres");
             } else {
-                setError("Error al registrar usuario");
+                setError("Error al crear la cuenta");
             }
         } finally {
             setAuthing(false);

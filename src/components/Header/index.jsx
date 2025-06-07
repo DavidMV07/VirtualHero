@@ -1,26 +1,27 @@
 import './Header.css';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import CartWidget from '../Accesorios/CartWidget';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
+import { auth } from '../../firebase/config';
+import { signOut } from 'firebase/auth';
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [categoryDropdownOpen, setCategoryDropdownOpen] = useState(false);
-  const [userEmail, setUserEmail] = useState(null);
-
-  useEffect(() => {
-    const email = localStorage.getItem("userEmail");
-    setUserEmail(email);
-  }, []);
+  const { user, userRole } = useAuth();
 
   const handleLoginClick = () => {
     window.location.href = '/login';
   };
 
-  const handleLogout = () => {
-    localStorage.removeItem("userEmail");
-    setUserEmail(null);
-    window.location.href = '/login';
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      window.location.href = '/login';
+    } catch (error) {
+      console.error("Error al cerrar sesión:", error);
+    }
   };
 
   const handleLinkClick = () => {
@@ -62,9 +63,11 @@ const Header = () => {
             </ul>
           )}
         </div>
-        <Link to="/ProductCRUD" className="nav__item" onClick={handleLinkClick}>
-          <i className="ri-admin-fill"></i> Admin
-        </Link>
+        {userRole === 'admin' && (
+          <Link to="/ProductCRUD" className="nav__item" onClick={handleLinkClick}>
+            <i className="ri-admin-fill"></i> Admin
+          </Link>
+        )}
         <Link to="/Services" className="nav__item" onClick={handleLinkClick}>
           <i className="ri-service-fill"></i> Services
         </Link>
@@ -77,10 +80,11 @@ const Header = () => {
       </nav>
 
       <div className="auth-buttons desktop-only">
-        {userEmail ? (
+        {user ? (
           <div className="user-info">
-            <span className="user-avatar">{userEmail[0].toUpperCase()}</span>
-            <span className="user-email">{userEmail}</span>
+            <span className="user-avatar">{user.email[0].toUpperCase()}</span>
+            <span className="user-email">{user.email}</span>
+            {userRole === 'admin' && <span className="user-role">Admin</span>}
             <button className="logout-btn" onClick={handleLogout}>Salir</button>
           </div>
         ) : (

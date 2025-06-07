@@ -14,6 +14,8 @@ import Home from "./components/Home";
 import Footer from "./components/Footer";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
+import Chatbot from "./components/ChatOnline";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   return (
@@ -24,7 +26,11 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
-            <Route path="/ProductCRUD" element={<ProductCRUD />} />
+            <Route path="/ProductCRUD" element={
+              <ProtectedRoute>
+                <ProductCRUD />
+              </ProtectedRoute>
+            } />
             <Route path="/Services" element={<Services />} />
             <Route path="/Contact" element={<Contact />} />
             <Route path="/Product/:id" element={<ItemDetailContainer />} />
@@ -33,6 +39,7 @@ function App() {
             <Route path="/Accesorios" element={<Product />} />
             <Route path="/Accesorios/:categoria" element={<Product />} />
           </Routes>
+          <Chatbot />
           <Footer />
         </BrowserRouter>
     </div>
