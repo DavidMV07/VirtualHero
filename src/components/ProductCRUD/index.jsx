@@ -24,7 +24,7 @@ export default function ProductCRUD() {
 
   // Obtener productos desde Firestore
   const fetchProducts = async () => {
-    const querySnapshot = await getDocs(collection(db, "products"));
+    const querySnapshot = await getDocs(collection(db, "productos"));
     const productsArr = [];
     querySnapshot.forEach((docSnap) => {
       productsArr.push({ id: docSnap.id, ...docSnap.data() });
@@ -47,7 +47,7 @@ export default function ProductCRUD() {
     if (form.name && form.description && form.price && form.image && form.category) {
       if (isEditing && form.id) {
         // Actualizar producto en Firestore
-        const productRef = doc(db, "products", form.id);
+        const productRef = doc(db, "productos", form.id);
         await updateDoc(productRef, {
           name: form.name,
           description: form.description,
@@ -59,7 +59,7 @@ export default function ProductCRUD() {
         setIsEditing(false);
       } else {
         // Agregar producto a Firestore
-        await addDoc(collection(db, "products"), {
+        await addDoc(collection(db, "productos"), {
           name: form.name,
           description: form.description,
           price: form.price,
@@ -75,14 +75,14 @@ export default function ProductCRUD() {
 
   // Manejar eliminación de productos
   const handleDelete = async (id) => {
-    await deleteDoc(doc(db, "products", id));
+    await deleteDoc(doc(db, "productos", id));
     alert("Producto eliminado con éxito");
     fetchProducts();
   };
 
   // Manejar edición de productos
-  const handleEdit = (product) => {
-    setForm(product);
+  const handleEdit = (productos) => {
+    setForm(productos);
     setIsEditing(true);
   };
 
