@@ -5,6 +5,9 @@
   justify-content: center;
   padding: 20px;
 }
+.contact-container h1{
+  color: #38bdf8;
+}
 .contact-form{
   display: flex;
   flex-direction: column;

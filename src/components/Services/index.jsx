@@ -41,8 +41,14 @@ export default function Services() {
       <h2 className="services-title">Nuestros Servicios</h2>
       <div className="services-grid">
         {services.map((service, index) => (
-          <div key={index} className="service-card" tabIndex="0" aria-label={service.title}>
-            <div className="service-icon">{service.icon}</div>
+          <div 
+            key={index} 
+            className="service-card" 
+            tabIndex="0" 
+            aria-label={service.title}
+            role="article"
+          >
+            <div className="service-icon" aria-hidden="true">{service.icon}</div>
             <h3 className="service-card-title">{service.title}</h3>
             <p className="service-card-desc">{service.description}</p>
           </div>

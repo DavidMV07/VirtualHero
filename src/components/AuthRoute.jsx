@@ -8,6 +8,7 @@ const AuthRoute = ({ children }) => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
+
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             if (user) {
                 setLoading(false);
@@ -18,11 +19,14 @@ const AuthRoute = ({ children }) => {
             }
         });
 
+        // Limpieza de la suscripción al desmontar el componente
         return () => unsubscribe();
     }, [auth, navigate]);
 
+    // Renderizado condicional durante la carga
     if (loading) return <p></p>;
 
+    // Renderizado de los componentes hijos si el usuario está autenticado
     return <div>{children}</div>;
 };
 

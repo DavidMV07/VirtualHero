@@ -11,10 +11,11 @@ import {
 } from "firebase/firestore";
 
 export default function ProductCRUD() {
+
   const [products, setProducts] = useState([]);
   const [form, setForm] = useState({
     id: "",
-    name: "",
+    title: "",
     description: "",
     price: "",
     image: "",
@@ -32,24 +33,25 @@ export default function ProductCRUD() {
     setProducts(productsArr);
   };
 
+  // Cargar productos al montar el componente
   useEffect(() => {
     fetchProducts();
   }, []);
 
   // Manejar cambios en el formulario
   const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+    setForm({ ...form, [e.target.title]: e.target.value });
   };
 
   // Manejar envío del formulario para agregar o actualizar productos
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (form.name && form.description && form.price && form.image && form.category) {
+    if (form.title && form.description && form.price && form.image && form.category) {
       if (isEditing && form.id) {
         // Actualizar producto en Firestore
         const productRef = doc(db, "productos", form.id);
         await updateDoc(productRef, {
-          name: form.name,
+          title: form.title,
           description: form.description,
           price: form.price,
           image: form.image,
@@ -58,9 +60,9 @@ export default function ProductCRUD() {
         alert("Producto actualizado con éxito");
         setIsEditing(false);
       } else {
-        // Agregar producto a Firestore
+        // Crear nuevo producto
         await addDoc(collection(db, "productos"), {
-          name: form.name,
+          title: form.title,
           description: form.description,
           price: form.price,
           image: form.image,
@@ -68,7 +70,7 @@ export default function ProductCRUD() {
         });
         alert("Producto agregado con éxito");
       }
-      setForm({ id: "", name: "", description: "", price: "", image: "", category: "" });
+      setForm({ id: "", title: "", description: "", price: "", image: "", category: "" });
       fetchProducts();
     }
   };
@@ -102,9 +104,9 @@ export default function ProductCRUD() {
         />
         <input
           type="text"
-          name="name"
-          placeholder="Product Name"
-          value={form.name}
+          name="title"
+          placeholder="Product Title"
+          value={form.title}
           onChange={handleChange}
           className="InputT"
           required
@@ -153,7 +155,7 @@ export default function ProductCRUD() {
           <thead>
             <tr className="TableTr">
               <th>Product ID</th>
-              <th>Name</th>
+              <th>title</th>
               <th>Description</th>
               <th>Price</th>
               <th>Image</th>
@@ -165,11 +167,11 @@ export default function ProductCRUD() {
             {products.map((product) => (
               <tr key={product.id} className="TbodyTr">
                 <td>{product.id}</td>
-                <td>{product.name}</td>
+                <td>{product.title}</td>
                 <td>{product.description}</td>
                 <td>${Number(product.price).toLocaleString()}</td>
                 <td>
-                  <img src={product.image} alt={product.name} className="ProductImage" />
+                  <img src={product.image} alt={product.title} className="ProductImage" />
                 </td>
                 <td>{product.category}</td>
                 <td className="tdActions">

@@ -312,3 +312,231 @@
         max-width: none;
     }
 }
+
+/* Estilos para el detalle del producto */
+.item-detail-container {
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 40px;
+    min-height: 80vh;
+}
+
+.item-detail-content {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    display: flex;
+    gap: 40px;
+    max-width: 1000px;
+    width: 100%;
+}
+
+.item-detail-image {
+    flex: 1;
+    max-width: 500px;
+}
+
+.item-detail-image img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+.item-detail-info {
+    color: black;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.item-detail-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.item-detail-description {
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.item-detail-category {
+    font-size: 1rem;
+    color: #666;
+    font-style: italic;
+    margin-bottom: 15px;
+}
+
+.item-detail-price {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #2563eb;
+    margin-bottom: 20px;
+}
+
+/* Media queries para responsividad */
+@media (max-width: 768px) {
+    .item-detail-content {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .item-detail-image {
+        max-width: 100%;
+    }
+
+    .item-detail-title {
+        font-size: 1.5rem;
+    }
+
+    .item-detail-price {
+        font-size: 1.5rem;
+    }
+}
+
+/* Estilos para el contador */
+.item-count-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.item-count-controls {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: #f8fafc;
+    padding: 10px;
+    border-radius: 8px;
+    width: fit-content;
+}
+
+.item-count-button {
+    background: #2563eb;
+    color: white;
+    border: none;
+    width: 35px;
+    height: 35px;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+}
+
+.item-count-button:hover {
+    background: #1d4ed8;
+}
+
+.item-count-number {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #1e293b;
+    min-width: 40px;
+    text-align: center;
+}
+
+.item-total {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #2563eb;
+    margin: 15px 0;
+}
+
+.add-to-cart-button {
+    background: #2563eb;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    max-width: 250px;
+}
+
+.add-to-cart-button:hover {
+    background: #1d4ed8;
+}
+
+/* Estilos para estados de carga y error */
+.loading, .error, .no-products {
+    text-align: center;
+    padding: 40px 20px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 20px auto;
+}
+
+.loading {
+    color: #2563eb;
+    font-size: 1.2rem;
+}
+
+.error {
+    text-align: center;
+    padding: 40px 20px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 20px auto;
+    color: #dc2626;
+}
+
+.error h2 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #dc2626;
+}
+
+.error p {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    color: #64748b;
+}
+
+.btn-retry {
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-retry:hover {
+    background-color: #1d4ed8;
+}
+
+.no-products {
+    color: #4b5563;
+    font-size: 1.1rem;
+}
+
+.main-title {
+    text-align: center;
+    font-size: 2rem;
+    color: #38bdf8;
+    margin: 20px 0;
+    font-weight: bold;
+}

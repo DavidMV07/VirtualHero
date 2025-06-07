@@ -1,3 +1,8 @@
+/**
+ * @fileoverview Componente de chat en línea para soporte al cliente
+ * @module ChatOnline
+ */
+
 // Importaciones necesarias desde React y otros archivos locales
 import React, { useEffect, useRef, useState } from "react";
 import "./chat.css"; // Estilos del chatbot
@@ -6,8 +11,20 @@ import ChatForm from "./ChatForm"; // Componente del formulario de entrada de me
 import ChatMessage from "./ChatMessage"; // Componente para renderizar cada mensaje del chat
 import { companyInfo } from "./infocompany"; // Información inicial de la empresa para el chatbot
 
+/**
+ * Componente principal del chat en línea
+ * @component
+ * @returns {React.ReactElement} Renderiza la interfaz del chat
+ * 
+ * @example
+ * // Uso básico del componente
+ * <Chatbot />
+ */
 const Chatbot = () => {
-  // Estado para manejar el historial del chat. Inicia con un mensaje oculto (no visible en el chat)
+  /**
+   * Estado para el historial del chat
+   * @type {[Array, Function]}
+   */
   const [chatHistory, setChatHistory] = useState([
     {
       hideInChat: true,
@@ -16,13 +33,23 @@ const Chatbot = () => {
     }
   ]);
 
-  // Estado para mostrar u ocultar el popup del chatbot
+  /**
+   * Estado para controlar la visibilidad del chat
+   * @type {[boolean, Function]}
+   */
   const [showChatbot, setShowChatbot] = useState(false);
 
-  // Referencia al contenedor del cuerpo del chat para hacer scroll automático
+  /**
+   * Referencia al contenedor del chat para el scroll automático
+   * @type {React.RefObject}
+   */
   const chatBodyRef = useRef();
   
-  // Función interna para actualizar el historial, eliminando "Thinking..." y mostrando respuesta o error
+  /**
+   * Actualiza el historial del chat
+   * @param {string} text - Texto del mensaje
+   * @param {boolean} [isError=false] - Indica si el mensaje es un error
+   */
   const updateHistory = (text, isError = false) => {
     setChatHistory(prev => [
       ...prev.filter(msg => msg.text !== "Thinking..."),
@@ -30,7 +57,11 @@ const Chatbot = () => {
     ]);
   };
 
-  // Función asíncrona para generar la respuesta del bot
+  /**
+   * Genera una respuesta del bot
+   * @async
+   * @param {Array} history - Historial de mensajes
+   */
   const generateBotResponse = async (history) => {
     // Prepara el historial en el formato requerido por la API (role, parts con texto)
     history = history.map(({ role, text }) => ({
@@ -67,7 +98,7 @@ const Chatbot = () => {
     }
   };
 
-  // Hace scroll automático al final cada vez que cambia el historial del chat
+  // Efecto para el scroll automático
   useEffect(() => {
     chatBodyRef.current.scrollTo({
       top: chatBodyRef.current.scrollHeight,

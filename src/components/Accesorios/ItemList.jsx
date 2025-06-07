@@ -1,20 +1,16 @@
 import Item from "./Item";
 import "./Accesorios.css"
-import { toCapital } from "../../helpers/toCapital";
 
 
-const ItemList = ( {productos, titulo} ) => {
+const ItemList = ( {productos, } ) => {
 
   return (
-    <div >
-        <h2 className="products__title">{toCapital(titulo)}</h2>
-
-        <div className="grid-container ">
-        {productos && productos.length > 0 && productos.map((prod) => (
-            <Item producto={prod} key={prod.id} />
-        ))}
-        </div>
+    <div className="grid-container ">
+      {productos && productos.length > 0 && productos.map((prod) => (
+        <Item producto={prod} key={prod.id} />
+      ))}
     </div>
+    
   )
 }
 
