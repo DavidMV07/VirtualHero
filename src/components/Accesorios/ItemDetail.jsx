@@ -1,8 +1,8 @@
 import { useContext, useState } from "react";
 import "./Accesorios.css"
 import { toCapital } from "../../helpers/toCapital"
-import ItemCount from "./itemcount"
-import { CartContext } from "../context/CartContext";
+import ItemCount from "./ItemCount"
+import { CartContext } from "../../Context/CartContext";
 
 
 const ItemDetail = ( {item} ) => {

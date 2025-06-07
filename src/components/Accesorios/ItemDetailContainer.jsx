@@ -1,12 +1,10 @@
-// Importamos hooks y funciones necesarias
-import { useEffect, useState } from "react"; // useEffect para ejecutar código cuando el componente se monta o cambia algo, y useState para guardar datos
-import ItemDetail from "./ItemDetail"; // Componente que va a mostrar los detalles del producto
-import { useParams } from "react-router-dom"; // Hook para acceder a los parámetros de la URL (por ejemplo, el id del producto)
-import { doc, getDoc } from "firebase/firestore"; // Funciones de Firebase para acceder a un documento específico en la base de datos
-import { db } from "../firebase/config"; // Importamos nuestra configuración de Firebase (donde tenemos la conexión a Firestore)
+import { useEffect, useState } from "react"
+import ItemDetail from "./ItemDetail";
+import { useParams } from "react-router-dom";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "../firebase/config";
 
 
-// Componente principal que se encarga de buscar el producto por su ID y mostrarlo
 const ItemDetailContainer = () => {
 
     // Creamos un estado llamado "item", donde vamos a guardar los datos del producto
