@@ -3,7 +3,7 @@ import './Main.css';
 import ChatOnline from '../ChatOnline';
 import Contact from '../Contact';
 import ProductCRUD from '../ProductCRUD';
-import ProductList from '../Accesorios/Productos';
+import ProductosList from '../Accesorios/Productos';
 import Login from '../../pages/Login';
 import Signup from '../../pages/Signup';
 import Home from '../Home';
@@ -14,11 +14,11 @@ function Main() {
 
   return (
     <>
-      <main className={`Main ${location.pathname === '/login' || location.pathname === '/signup' ? 'login' : ''}`}>
-        <div className="container">
+      <main className={`Main${location.pathname === '/login' || location.pathname === '/signup' ? 'login' : ''}`}>
+        <div className="container__Main">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/Accesorios" element={<ProductList />} />
+            <Route path="/Accesorios" element={<ProductosList />} />
             <Route path="/ProductCRUD" element={<ProductCRUD />} />
             <Route path="/Services" element={<Services />} />
             <Route path="/Contact" element={<Contact />} />

@@ -1,7 +1,7 @@
 const products = [
   {
     id: 1,
-    name: "Teclado Mecánico RGB",
+    title: "Teclado Mecánico RGB",
     description: "Teclado mecánico con retroiluminación RGB para gamers.",
     price: 250000,
     image: "/images/keyboard.jpg",

@@ -77,7 +77,7 @@ const Chatbot= () => {
     });
   }, [chatHistory]);
 
-  return <div className={`container ${showChatbot ? "show-chatbot" : ""}`}>
+  return <div className={`container__Chatbot ${showChatbot ? "show-chatbot" : ""}`}>
     <button onClick={() => setShowChatbot(prev => !prev)} id="chatbot-toggler">
       <span className="material-symbols-outlined">mode_comment</span>
       <span className="material-symbols-outlined">close</span>
