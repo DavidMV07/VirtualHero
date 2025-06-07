@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Signup.css';
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from '../firebase/config';
 
 const Signup = () => {
     const navigate = useNavigate();
@@ -13,7 +15,7 @@ const Signup = () => {
 
     const signUpWithEmail = async () => {
         if (password !== confirmPassword) {
-            setError('Passwords do not match');
+            setError('Las contraseñas no coinciden');
             return;
         }
 
@@ -21,22 +23,19 @@ const Signup = () => {
         setError('');
 
         try {
-            const response = await fetch("http://localhost:5000/register", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ email, password }),
-            });
-
-            if (response.ok) {
-                alert("User registered successfully");
-                navigate('/login'); // Redirige al login después del registro
-            } else {
-                const data = await response.json();
-                setError(data.message); // Mostrar el mensaje de error del backend
-            }
+            await createUserWithEmailAndPassword(auth, email, password);
+            alert("Usuario registrado exitosamente");
+            navigate('/login');
         } catch (err) {
-            console.error("Error al registrar usuario:", err);
-            setError("Error al conectar con el servidor");
+            if (err.code === "auth/email-already-in-use") {
+                setError("El correo ya está registrado");
+            } else if (err.code === "auth/invalid-email") {
+                setError("Correo inválido");
+            } else if (err.code === "auth/weak-password") {
+                setError("La contraseña es muy débil (mínimo 6 caracteres)");
+            } else {
+                setError("Error al registrar usuario");
+            }
         } finally {
             setAuthing(false);
         }
@@ -58,7 +57,7 @@ const Signup = () => {
                             className="signup-input"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
-                            />
+                        />
                     </div>
                     <div className='Signup-input-group'>
                         <label className='Signup-label' htmlFor='password'>Password</label>
@@ -68,7 +67,7 @@ const Signup = () => {
                             className="signup-input"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
-                            />
+                        />
                     </div>
                     <div className='Signup-input-group'>
                         <label className='Signup-label' htmlFor='confirmPassword'>Confirm Password</label>
@@ -78,7 +77,7 @@ const Signup = () => {
                             className="signup-input"
                             value={confirmPassword}
                             onChange={(e) => setConfirmPassword(e.target.value)}
-                            />
+                        />
                     </div>
                 </div>
 
@@ -92,7 +91,7 @@ const Signup = () => {
                 </button>
                 <div className="signup-link">
                     <p>
-                        Already have an account? <a href="/Login">Log In</a>
+                        Already have an account? <a href="/login">Log In</a>
                     </p>
                 </div>
             </div>

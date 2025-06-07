@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Login.css';
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from '../firebase/config';
 
 const Login = () => {
     const navigate = useNavigate();
@@ -15,24 +17,17 @@ const Login = () => {
         setError('');
 
         try {
-            const response = await fetch("http://localhost:5000/login", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ email, password }),
-            });
-
-            if (response.ok) {
-                const data = await response.json();
-                console.log("Inicio de sesión exitoso:", data);
-                localStorage.setItem("userEmail", data.email); // Guardar el correo en localStorage
-                navigate('/'); // Redirige a la página principal
-            } else {
-                const data = await response.json();
-                setError(data.message); // Mostrar el mensaje de error del backend
-            }
+            await signInWithEmailAndPassword(auth, email, password);
+            localStorage.setItem("userEmail", email);
+            navigate('/');
         } catch (err) {
-            console.error("Error al iniciar sesión:", err);
-            setError("Error al conectar con el servidor");
+            if (err.code === "auth/user-not-found") {
+                setError("Usuario no encontrado");
+            } else if (err.code === "auth/wrong-password") {
+                setError("Contraseña incorrecta");
+            } else {
+                setError("Error al iniciar sesión");
+            }
         } finally {
             setAuthing(false);
         }
@@ -79,8 +74,7 @@ const Login = () => {
                             onClick={signInWithEmail}
                             disabled={authing}
                         >
-                            Iniciar sesión 
-
+                            Iniciar sesión
                         </button>
                         {error && <div className="login-error">{error}</div>}
                         <div className="signup-link">

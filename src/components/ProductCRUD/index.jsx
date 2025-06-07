@@ -1,5 +1,14 @@
 import { useState, useEffect } from "react";
 import "./index.css";
+import { db } from '../../firebase/config';
+import {
+  collection,
+  getDocs,
+  addDoc,
+  updateDoc,
+  deleteDoc,
+  doc
+} from "firebase/firestore";
 
 export default function ProductCRUD() {
   const [products, setProducts] = useState([]);
@@ -13,12 +22,14 @@ export default function ProductCRUD() {
   });
   const [isEditing, setIsEditing] = useState(false);
 
-  // Obtener productos desde el backend
-  const fetchProducts = () => {
-    fetch("http://localhost:5000/products")
-      .then((response) => response.json())
-      .then((data) => setProducts(data))
-      .catch((error) => console.error("Error al obtener productos:", error));
+  // Obtener productos desde Firestore
+  const fetchProducts = async () => {
+    const querySnapshot = await getDocs(collection(db, "products"));
+    const productsArr = [];
+    querySnapshot.forEach((docSnap) => {
+      productsArr.push({ id: docSnap.id, ...docSnap.data() });
+    });
+    setProducts(productsArr);
   };
 
   useEffect(() => {
@@ -31,66 +42,42 @@ export default function ProductCRUD() {
   };
 
   // Manejar envío del formulario para agregar o actualizar productos
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (form.id && form.name && form.description && form.price && form.image && form.category) {
-      if (isEditing) {
-        // Actualizar producto en el backend
-        fetch(`http://localhost:5000/products/${form.id}`, {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify(form)
-        })
-          .then((response) => {
-            if (response.ok) {
-              alert("Producto actualizado con éxito");
-              fetchProducts(); // Actualizar la lista de productos
-              setIsEditing(false);
-              setForm({ id: "", name: "", description: "", price: "", image: "", category: "" });
-            } else {
-              alert("Error al actualizar producto");
-            }
-          })
-          .catch((error) => console.error("Error al actualizar producto:", error));
+    if (form.name && form.description && form.price && form.image && form.category) {
+      if (isEditing && form.id) {
+        // Actualizar producto en Firestore
+        const productRef = doc(db, "products", form.id);
+        await updateDoc(productRef, {
+          name: form.name,
+          description: form.description,
+          price: form.price,
+          image: form.image,
+          category: form.category
+        });
+        alert("Producto actualizado con éxito");
+        setIsEditing(false);
       } else {
-        // Agregar producto al backend
-        fetch("http://localhost:5000/products", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify(form)
-        })
-          .then((response) => {
-            if (response.ok) {
-              alert("Producto agregado con éxito");
-              fetchProducts(); // Actualizar la lista de productos
-              setForm({ id: "", name: "", description: "", price: "", image: "", category: "" });
-            } else {
-              alert("Error al agregar producto");
-            }
-          })
-          .catch((error) => console.error("Error al agregar producto:", error));
+        // Agregar producto a Firestore
+        await addDoc(collection(db, "products"), {
+          name: form.name,
+          description: form.description,
+          price: form.price,
+          image: form.image,
+          category: form.category
+        });
+        alert("Producto agregado con éxito");
       }
+      setForm({ id: "", name: "", description: "", price: "", image: "", category: "" });
+      fetchProducts();
     }
   };
 
   // Manejar eliminación de productos
-  const handleDelete = (id) => {
-    fetch(`http://localhost:5000/products/${id}`, {
-      method: "DELETE"
-    })
-      .then((response) => {
-        if (response.ok) {
-          alert("Producto eliminado con éxito");
-          fetchProducts(); // Actualizar la lista de productos
-        } else {
-          alert("Error al eliminar producto");
-        }
-      })
-      .catch((error) => console.error("Error al eliminar producto:", error));
+  const handleDelete = async (id) => {
+    await deleteDoc(doc(db, "products", id));
+    alert("Producto eliminado con éxito");
+    fetchProducts();
   };
 
   // Manejar edición de productos
@@ -101,8 +88,9 @@ export default function ProductCRUD() {
 
   return (
     <div className="CrudContainer">
-      <h1>Product Management </h1>
+      <h1>Product Management</h1>
       <form onSubmit={handleSubmit} className="FormCrud">
+        {/* El campo ID solo se usa para edición, no para agregar */}
         <input
           type="text"
           name="id"
@@ -110,8 +98,7 @@ export default function ProductCRUD() {
           value={form.id}
           onChange={handleChange}
           className="InputT"
-          required
-          disabled={isEditing}
+          disabled
         />
         <input
           type="text"
@@ -157,7 +144,7 @@ export default function ProductCRUD() {
           className="InputT"
           required
         />
-        <button type="submit" className={`Add ${isEditing ? '' : ''} `}>
+        <button type="submit" className={`Add`}>
           {isEditing ? "Update Product" : "Add Product"}
         </button>
       </form>
