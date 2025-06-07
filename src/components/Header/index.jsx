@@ -1,5 +1,7 @@
 import './Header.css';
 import { useState, useEffect } from 'react';
+import CartWidget from '../Accesorios/CartWidget';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -34,41 +36,44 @@ const Header = () => {
   return (
     <header className="header">
       <div className='Logo__Section'>
-        <img src="LOGO.png" alt="Logo de la Empresa" className='Logo'/>
+        <img src="/LOGO.png" alt="Logo de la Empresa" className='Logo'/>
         <span className='brand__name'>Virtual Hero</span>
       </div>
       <input type="checkbox" id="menu__toggle" className="menu__toggle" />
       <label htmlFor="menu__toggle" className="Menucheck">&#9776;</label>
 
       <nav className={`nav__links${menuOpen ? ' show' : ''}`} id="nav-menu">
-        <a href="../Home" className='nav__item' onClick={handleLinkClick}>
+        <Link to="/" className='nav__item' onClick={handleLinkClick}>
           <i className="ri-home-4-fill"></i> Home
-        </a>
+        </Link>
         <div className="dropdown">
           <button className="nav__item dropdown-btn" onClick={() => setCategoryDropdownOpen(!categoryDropdownOpen)}>
             <i className="ri-store-3-fill"></i> Accessories ▾
           </button>
           {categoryDropdownOpen && (
             <ul className={`dropdown-content${categoryDropdownOpen ? ' show' : ''}`}>
-              <li><a onClick={() => handleCategoryClick("Todos")}>Todos</a></li>
-              <li><a onClick={() => handleCategoryClick("Periféricos")}>Periféricos</a></li>
-              <li><a onClick={() => handleCategoryClick("Audio")}>Audio</a></li>
-              <li><a onClick={() => handleCategoryClick("Pantallas")}>Pantallas</a></li>
-              <li><a onClick={() => handleCategoryClick("Mobiliario")}>Mobiliario</a></li>
-              <li><a onClick={() => handleCategoryClick("Computadores")}>Computadores</a></li>
-              <li><a onClick={() => handleCategoryClick("Almacenamiento")}>Almacenamiento</a></li>
+              <li><Link to="/Accesorios" onClick={() => handleCategoryClick("Todos")}>Todos</Link></li>
+              <li><Link to="/Accesorios" onClick={() => handleCategoryClick("Periféricos")}>Periféricos</Link></li>
+              <li><Link to="/Accesorios" onClick={() => handleCategoryClick("Audio")}>Audio</Link></li>
+              <li><Link to="/Accesorios" onClick={() => handleCategoryClick("Pantallas")}>Pantallas</Link></li>
+              <li><Link to="/Accesorios" onClick={() => handleCategoryClick("Mobiliario")}>Mobiliario</Link></li>
+              <li><Link to="/Accesorios" onClick={() => handleCategoryClick("Computadores")}>Computadores</Link></li>
+              <li><Link to="/Accesorios" onClick={() => handleCategoryClick("Almacenamiento")}>Almacenamiento</Link></li>
             </ul>
           )}
         </div>
-        <a href="../ProductCRUD" className="nav__item" onClick={handleLinkClick}>
+        <Link to="/ProductCRUD" className="nav__item" onClick={handleLinkClick}>
           <i className="ri-admin-fill"></i> Admin
-        </a>
-        <a href="../Services" className="nav__item" onClick={handleLinkClick}>
+        </Link>
+        <Link to="/Services" className="nav__item" onClick={handleLinkClick}>
           <i className="ri-service-fill"></i> Services
-        </a>
-        <a href="../Contact" className="nav__item" onClick={handleLinkClick}>
+        </Link>
+        <Link to="/Contact" className="nav__item" onClick={handleLinkClick}>
           <i className="ri-contacts-fill"></i> Contact
-        </a>
+        </Link>
+        <div className="nav__item">
+          <CartWidget />
+        </div>
       </nav>
 
       <div className="auth-buttons desktop-only">
