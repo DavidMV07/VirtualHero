@@ -13,6 +13,8 @@ const Signup = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
     const [error, setError] = useState('');
 
     const signUpWithEmail = async () => {
@@ -21,13 +23,26 @@ const Signup = () => {
             return;
         }
 
+        if (!firstName.trim() || !lastName.trim()) {
+            setError('Por favor completa todos los campos');
+            return;
+        }
+
         setAuthing(true);
         setError('');
 
         try {
             const result = await createUserWithEmailAndPassword(auth, email, password);
-            await updateUserRole(result.user.uid, result.user.email, 'user');
-            navigate('/');
+            await updateUserRole(result.user.uid, result.user.email, 'user', firstName, lastName);
+            
+            // Verificar si hay un producto pendiente
+            const pendingProduct = localStorage.getItem('lastProductDetail');
+            if (pendingProduct) {
+                const { productId } = JSON.parse(pendingProduct);
+                navigate(`/Product/${productId}`);
+            } else {
+                navigate('/');
+            }
         } catch (err) {
             if (err.code === "auth/email-already-in-use") {
                 setError("El correo electrónico ya está registrado");
@@ -50,9 +65,32 @@ const Signup = () => {
                 </div>
                 <div className="Signup-inputs">
                     <div className="Signup-input-group">
+                        <label className='Signup-label' htmlFor='firstName'>Nombre</label>
+                        <input
+                            type="text"
+                            id="firstName"
+                            placeholder="Tu nombre"
+                            className="signup-input"
+                            value={firstName}
+                            onChange={(e) => setFirstName(e.target.value)}
+                        />
+                    </div>
+                    <div className="Signup-input-group">
+                        <label className='Signup-label' htmlFor='lastName'>Apellido</label>
+                        <input
+                            type="text"
+                            id="lastName"
+                            placeholder="Tu apellido"
+                            className="signup-input"
+                            value={lastName}
+                            onChange={(e) => setLastName(e.target.value)}
+                        />
+                    </div>
+                    <div className="Signup-input-group">
                         <label className='Signup-label' htmlFor='email'>Email</label>
                         <input
                             type="email"
+                            id="email"
                             placeholder="Email"
                             className="signup-input"
                             value={email}
@@ -63,6 +101,7 @@ const Signup = () => {
                         <label className='Signup-label' htmlFor='password'>Password</label>
                         <input
                             type="password"
+                            id="password"
                             placeholder="Password"
                             className="signup-input"
                             value={password}
@@ -73,6 +112,7 @@ const Signup = () => {
                         <label className='Signup-label' htmlFor='confirmPassword'>Confirm Password</label>
                         <input
                             type="password"
+                            id="confirmPassword"
                             placeholder="Re-Enter Password"
                             className="signup-input"
                             value={confirmPassword}
@@ -81,7 +121,7 @@ const Signup = () => {
                     </div>
                 </div>
 
-                {error && <div className="text-red-500 mb-4">{error}</div>}
+                {error && <div className="error-message">{error}</div>}
                 <button
                     onClick={signUpWithEmail}
                     disabled={authing}

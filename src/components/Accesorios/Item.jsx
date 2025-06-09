@@ -10,7 +10,14 @@ const Item = ( {producto} ) => {
       <img 
         className="product__image" 
         src={producto.image} 
-        alt={producto.title} 
+        alt={producto.title}
+        loading="lazy"
+        width="300"
+        height="300"
+        onError={(e) => {
+          e.target.src = '/placeholder.jpg';
+          e.target.onerror = null;
+        }}
       />
       
       {/* Información básica del producto */}

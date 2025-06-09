@@ -4,34 +4,59 @@ import { useParams } from "react-router-dom";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "../../firebase/config";
 
-const ProductosList = () => {
+const CACHE_DURATION = 5 * 60 * 1000; // 5 minutos en milisegundos
 
+const ProductosList = () => {
     const [productos, setProductos] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [titulo] = useState("Productos");
     
-    const categoria = useParams().cat;
+    const { categoria } = useParams();
+
+    const getCachedProducts = () => {
+        const cached = localStorage.getItem('allProducts');
+        if (cached) {
+            const { data, timestamp } = JSON.parse(cached);
+            const isExpired = Date.now() - timestamp > CACHE_DURATION;
+            if (!isExpired) {
+                // Si tenemos productos en caché, filtramos por categoría
+                if (categoria && categoria !== "Todos") {
+                    return data.filter(prod => prod.category === categoria);
+                }
+                return data;
+            }
+        }
+        return null;
+    };
+
+    const setCachedProducts = (data) => {
+        localStorage.setItem('allProducts', JSON.stringify({
+            data,
+            timestamp: Date.now()
+        }));
+    };
 
     useEffect(() => {
-        setLoading(true);
-        setError(null);
-
         const fetchProductos = async () => {
             try {
-                console.log("Iniciando conexión con Firebase...");
-                console.log("Base de datos:", db);
+                console.log("Iniciando búsqueda de productos...");
+                console.log("Categoría actual:", categoria);
                 
+                setLoading(true);
+                setError(null);
+
                 const productosRef = collection(db, "productos");
-                console.log("Referencia a colección creada:", productosRef);
+                let q = productosRef;
                 
-                const q = cat ? query(productosRef, where("categoria", "==", cat)) : productosRef;
-                console.log("Query construida:", q);
-                
-                console.log("Obteniendo productos...");
+                if (categoria && categoria !== "Todos") {
+                    console.log("Aplicando filtro para categoría:", categoria);
+                    q = query(productosRef, where("category", "==", categoria));
+                }
+
+                console.log("Ejecutando consulta a Firebase...");
                 const resp = await getDocs(q);
-                console.log("Respuesta de Firebase:", resp);
-                console.log("Productos obtenidos:", resp.docs.length);
+                console.log("Productos encontrados:", resp.docs.length);
 
                 if (resp.empty) {
                     console.log("No se encontraron productos");
@@ -41,16 +66,13 @@ const ProductosList = () => {
 
                 const productosData = resp.docs.map((doc) => {
                     const data = doc.data();
-                    console.log("Datos del documento:", data);
+                    console.log("Producto encontrado:", data.title, "Categoría:", data.category);
                     return { ...data, id: doc.id };
                 });
-                
-                console.log("Datos procesados:", productosData);
+
                 setProductos(productosData);
             } catch (error) {
-                console.error("Error detallado:", error);
-                console.error("Código de error:", error.code);
-                console.error("Mensaje de error:", error.message);
+                console.error("Error al cargar productos:", error);
                 setError(`Error al cargar los productos: ${error.message}`);
             } finally {
                 setLoading(false);
@@ -89,11 +111,13 @@ const ProductosList = () => {
     // Renderizado principal del componente
     return (
         <div className="container__Product">
-            <h2 className="main-title">Productos</h2>
+            <h2 className="main-title">
+                {categoria ? `Productos - ${categoria}` : "Todos los Productos"}
+            </h2>
             {productos.length === 0 ? (
                 <div className="no-products">
-                    <p>No hay productos disponibles en este momento.</p>
-                    <p>Por favor, intenta más tarde o contacta con el administrador.</p>
+                    <p>No hay productos disponibles en esta categoría.</p>
+                    <p>Por favor, intenta con otra categoría o contacta con el administrador.</p>
                 </div>
             ) : (
                 <ItemList productos={productos} titulo={titulo} />

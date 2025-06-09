@@ -1,10 +1,13 @@
 import { useState } from "react";
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "../../firebase/config";
 import "./Contact.css";
 
 function Contact() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleChange = e => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -14,21 +17,32 @@ function Contact() {
     e.preventDefault();
     setSuccess("");
     setError("");
+    setLoading(true);
+
     try {
-      const response = await fetch("http://localhost:5000/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
-      });
-      const data = await response.json();
-      if (response.ok) {
-        setSuccess("¡Mensaje enviado correctamente!");
-        setForm({ name: "", email: "", message: "" });
-      } else {
-        setError(data.message || "Error al enviar el mensaje");
-      }
-    } catch {
-      setError("Error de conexión");
+      // Crear una referencia a la colección 'mensajes' en Firebase
+      const mensajesRef = collection(db, "mensajes");
+
+      // Crear el objeto del mensaje con la fecha
+      const mensaje = {
+        ...form,
+        fecha: new Date().toISOString(),
+        estado: "pendiente"
+      };
+
+      // Guardar el mensaje en Firebase
+      await addDoc(mensajesRef, mensaje);
+
+      // Mostrar mensaje de éxito
+      setSuccess("¡Mensaje enviado correctamente! Nos pondremos en contacto contigo pronto.");
+      
+      // Limpiar el formulario
+      setForm({ name: "", email: "", message: "" });
+    } catch (error) {
+      console.error("Error al enviar mensaje:", error);
+      setError("Error al enviar el mensaje. Por favor, intenta nuevamente.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -36,16 +50,51 @@ function Contact() {
     <div className="contact-container">
       <h1>Contáctanos</h1>
       <form className="contact-form" onSubmit={handleSubmit}>
-        <label htmlFor="name">Nombre:</label>
-        <input type="text" id="name" name="name" value={form.name} onChange={handleChange} required />
+        <div className="input-group">
+          <label htmlFor="name">Nombre:</label>
+          <input 
+            type="text" 
+            id="name" 
+            name="name" 
+            value={form.name} 
+            onChange={handleChange}
+            placeholder="Ingresa tu nombre completo"
+            required 
+          />
+        </div>
 
-        <label htmlFor="email">Correo electrónico:</label>
-        <input type="email" id="email" name="email" value={form.email} onChange={handleChange} required />
+        <div className="input-group">
+          <label htmlFor="email">Correo electrónico:</label>
+          <input 
+            type="email" 
+            id="email" 
+            name="email" 
+            value={form.email} 
+            onChange={handleChange}
+            placeholder="ejemplo@correo.com"
+            required 
+          />
+        </div>
 
-        <label htmlFor="message">Mensaje:</label>
-        <textarea id="message" name="message" value={form.message} onChange={handleChange} required></textarea>
+        <div className="input-group">
+          <label htmlFor="message">Mensaje:</label>
+          <textarea 
+            id="message" 
+            name="message" 
+            value={form.message} 
+            onChange={handleChange}
+            placeholder="¿En qué podemos ayudarte?"
+            required
+          ></textarea>
+        </div>
 
-        <button type="submit">Enviar</button>
+        <button 
+          type="submit" 
+          disabled={loading}
+        >
+          {loading ? "Enviando..." : "Enviar Mensaje"}
+        </button>
+        
         {success && <div className="contact-success">{success}</div>}
         {error && <div className="contact-error">{error}</div>}
       </form>

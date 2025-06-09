@@ -1,0 +1,203 @@
+.admin-container {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.admin-tabs {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    border-bottom: 2px solid #2563eb33;
+    padding-bottom: 1rem;
+}
+
+.admin-tab {
+    padding: 0.8rem 1.5rem;
+    background: transparent;
+    border: none;
+    color: #e0e7ef;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.admin-tab:hover {
+    background: #2563eb22;
+}
+
+.admin-tab.active {
+    background: #2563eb;
+    color: white;
+}
+
+/* Estilos para la sección de mensajes */
+.messages-container {
+    background: #071728;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+}
+
+.messages-container h2 {
+    color: #38bdf8;
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.messages-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.message-card {
+    background: #0c2137;
+    border-radius: 12px;
+    padding: 1.5rem;
+    border: 1px solid #2563eb33;
+    transition: all 0.3s ease;
+}
+
+.message-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 24px rgba(37,99,235,0.2);
+}
+
+.message-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid #2563eb33;
+}
+
+.message-header h3 {
+    color: #e0e7ef;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.message-date {
+    color: #64748b;
+    font-size: 0.9rem;
+}
+
+.message-content {
+    margin-bottom: 1.5rem;
+}
+
+.message-content p {
+    color: #e0e7ef;
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+}
+
+.message-text {
+    background: #0f172a;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-top: 0.5rem;
+    color: #94a3b8;
+}
+
+.message-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #2563eb33;
+}
+
+.status-badge {
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.status-badge.pendiente {
+    background: #dc2626;
+    color: white;
+}
+
+.status-badge.respondido {
+    background: #10b981;
+    color: white;
+}
+
+.message-actions button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-responder {
+    background: #10b981;
+    color: white;
+}
+
+.btn-responder:hover {
+    background: #059669;
+}
+
+.btn-pendiente {
+    background: #dc2626;
+    color: white;
+}
+
+.btn-pendiente:hover {
+    background: #b91c1c;
+}
+
+.admin-loading, .admin-error {
+    text-align: center;
+    padding: 3rem;
+    color: #e0e7ef;
+}
+
+.admin-error button {
+    margin-top: 1rem;
+    padding: 0.8rem 1.5rem;
+    background: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.no-messages {
+    text-align: center;
+    color: #64748b;
+    font-size: 1.2rem;
+    padding: 3rem;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .admin-container {
+        padding: 1rem;
+    }
+
+    .messages-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-tabs {
+        flex-wrap: wrap;
+    }
+
+    .admin-tab {
+        width: calc(50% - 0.5rem);
+        text-align: center;
+    }
+} 

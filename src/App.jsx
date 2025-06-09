@@ -5,7 +5,7 @@ import { BrowserRouter, Route, Routes} from 'react-router-dom';
 import Header from "./components/Header"; 
 import Carrito from "./components/Accesorios/Carrito";
 import Checkout from "./components/Accesorios/Checkout";
-import ProductCRUD from "./components/ProductCRUD";
+import Admin from "./components/Admin";
 import Services from "./components/Services";
 import Contact from "./components/Contact";
 import Product from "./components/Accesorios/Productos";
@@ -28,7 +28,7 @@ function App() {
             <Route path="/signup" element={<Signup />} />
             <Route path="/ProductCRUD" element={
               <ProtectedRoute>
-                <ProductCRUD />
+                <Admin />
               </ProtectedRoute>
             } />
             <Route path="/Services" element={<Services />} />

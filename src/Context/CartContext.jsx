@@ -1,19 +1,27 @@
 import { createContext, useEffect, useState } from "react";
+import { useAuth } from "./AuthContext";
 
 export const CartContext = createContext();
 
-
-const carritoInicial = JSON.parse(localStorage.getItem("carrito")) || [];
-
-
 export const CartProvider = ({children}) => {
+    const { user } = useAuth();
+    const [carrito, setCarrito] = useState([]);
 
-    const [carrito, setCarrito] = useState(carritoInicial);
-
+    // Cargar el carrito cuando cambia el usuario
+    useEffect(() => {
+        if (user) {
+            const carritoGuardado = localStorage.getItem(`carrito_${user.uid}`);
+            setCarrito(carritoGuardado ? JSON.parse(carritoGuardado) : []);
+        } else {
+            // Si no hay usuario, el carrito está vacío
+            setCarrito([]);
+        }
+    }, [user]);
 
     const agregarAlCarrito = (item, cantidad) => {
-        const itemAgregado = { ...item, cantidad };
+        if (!user) return; // No agregar si no hay usuario
 
+        const itemAgregado = { ...item, cantidad };
         const nuevoCarrito = [...carrito];
         const estaEnElCarrito = nuevoCarrito.find((producto) => producto.id === itemAgregado.id);
 
@@ -25,15 +33,12 @@ export const CartProvider = ({children}) => {
         setCarrito(nuevoCarrito);
     }
 
-
     const cantidadEnCarrito = () => {
         return carrito.reduce((acc, prod) => acc + prod.cantidad, 0);
     }
 
-
     const precioTotal = () => {
         return carrito.reduce((acc, prod) => {
-            // Asegurarnos de que el precio sea un número
             const precio = typeof prod.price === 'string' ? 
                 Number(prod.price.replace(/[^0-9.-]+/g, "")) : 
                 Number(prod.price);
@@ -41,14 +46,19 @@ export const CartProvider = ({children}) => {
         }, 0);
     }
 
-
     const vaciarCarrito = () => {
         setCarrito([]);
+        if (user) {
+            localStorage.removeItem(`carrito_${user.uid}`);
+        }
     }
 
+    // Guardar el carrito cuando cambia
     useEffect(() => {
-        localStorage.setItem("carrito", JSON.stringify(carrito));
-    }, [carrito])
+        if (user) {
+            localStorage.setItem(`carrito_${user.uid}`, JSON.stringify(carrito));
+        }
+    }, [carrito, user]);
     
     return (
         <CartContext.Provider value={ {

@@ -12,145 +12,375 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  padding: 3rem 2rem 2rem 2rem;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+  min-height: 80vh;
+  gap: 2rem;
 }
 
 .hero-content {
-  flex: 1 1 350px;
-  max-width: 600px;
+  flex: 1;
+  max-width: 500px;
+  position: relative;
+  z-index: 2;
+  padding: 2rem;
 }
 
 .hero-content h1 {
-  font-size: 2.8rem;
+  font-size: 3.2rem;
   font-weight: bold;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
 }
 
 .brand {
   color: #38bdf8;
+  text-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
 }
 
 .hero-content p {
-  font-size: 1.2rem;
+  font-size: 1.25rem;
   margin-bottom: 2rem;
+  line-height: 1.6;
+  color: #e2e8f0;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
 }
 
 .hero-btn {
   display: inline-block;
-  background: #38bdf8;
-  color: #0a1a66;
-  padding: 0.8rem 2rem;
-  border-radius: 8px;
+  padding: 1rem 2rem;
+  border-radius: 12px;
   font-weight: bold;
   text-decoration: none;
-  transition: background 0.2s;
+  transition: all 0.3s ease;
+  font-size: 1.1rem;
+}
+
+.hero-btn.primary {
+  background: #38bdf8;
+  color: #0f172a;
+}
+
+.hero-btn.secondary {
+  background: rgba(56, 189, 248, 0.1);
+  color: #38bdf8;
+  border: 2px solid #38bdf8;
 }
 
 .hero-btn:hover {
-  background: #0ea5e9;
-  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(56, 189, 248, 0.2);
 }
 
 .hero-image {
-  flex: 1 1 250px;
+  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: 2rem;
-  
+  position: relative;
+  z-index: 1;
 }
 
-.hero-image img {
-  max-width: 320px;
-  width: 100%;
-  border-radius: 1rem;
-  box-shadow: 0 8px 32px rgba(56,189,248,0.2);
-}
-
-/* Categorías */
-.categories-section {
-  margin: 3rem 0 2rem 0;
-  text-align: center;
-}
-
-.categories-section h2 {
-  color: #38bdf8;
-  margin-bottom: 1.5rem;
-  font-size: 2rem;
-}
-
-.categories-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: 1.5rem;
-  justify-items: center;
-}
-
-.category-card {
-  background: #11205f;
-  border-radius: 1rem;
-  padding: 1rem;
-  width: 140px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  transition: transform 0.2s, box-shadow 0.2s;
-  cursor: pointer;
-  box-shadow: 0 2px 8px rgba(56,189,248,0.08);
-}
-
-.category-card:hover {
-  transform: translateY(-8px) scale(1.05);
-  box-shadow: 0 8px 32px rgba(56,189,248,0.15);
-  background: #1e40af;
-}
-
-.category-card img {
-  width: 60px;
-  height: 60px;
-  object-fit: contain;
-  margin-bottom: 0.5rem;
-}
-
-.category-card span {
-  color: #fff;
-  font-weight: 500;
-}
-
-/* Visión y Misión */
-.vision-mission-section {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-  justify-content: center;
-  margin-top: 3rem;
-}
-
-.card {
-  background: #11205f;
-  border-radius: 1rem;
-  padding: 2rem;
+.main-hero-image {
   max-width: 400px;
-  min-width: 260px;
-  box-shadow: 0 2px 8px rgba(56,189,248,0.08);
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(56, 189, 248, 0.2);
+  transition: transform 0.3s ease;
 }
 
-.card h2 {
+.main-hero-image:hover {
+  transform: scale(1.02);
+}
+
+/* Beneficios */
+.benefits-section {
+  padding: 4rem 2rem;
+  margin: 0;
+}
+
+.benefits-section h2 {
+  text-align: center;
+  font-size: 2.5rem;
+  color: #38bdf8;
+  margin-bottom: 3rem;
+}
+
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.benefit-card {
+  background: rgba(15, 23, 42, 0.5);
+  padding: 2rem;
+  border-radius: 16px;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.benefit-card:hover {
+  transform: translateY(-10px);
+}
+
+.benefit-card i {
+  font-size: 2.5rem;
   color: #38bdf8;
   margin-bottom: 1rem;
 }
 
-@media (max-width: 900px) {
+.benefit-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #e2e8f0;
+}
+
+.benefit-card p {
+  color: #94a3b8;
+  line-height: 1.6;
+}
+
+/* Categorías */
+.categories-section {
+  padding: 4rem 2rem;
+}
+
+.categories-section h2 {
+  text-align: center;
+  font-size: 2.5rem;
+  color: #38bdf8;
+  margin-bottom: 3rem;
+}
+
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.category-card {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #1e293b;
+  text-decoration: none;
+  color: #fff;
+  transition: transform 0.3s ease;
+}
+
+.category-card:hover {
+  transform: translateY(-10px);
+}
+
+.category-image {
+  position: relative;
+  padding-top: 60%;
+  overflow: hidden;
+}
+
+.category-image img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.category-card:hover .category-image img {
+  transform: scale(1.1);
+}
+
+.category-info {
+  padding: 1.5rem;
+  background: linear-gradient(to top, #1e293b 0%, rgba(30, 41, 59, 0.8) 100%);
+}
+
+.category-name {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.category-desc {
+  color: #94a3b8;
+  font-size: 1rem;
+}
+
+/* Servicios Destacados */
+.featured-services-section {
+  padding: 4rem 2rem;
+}
+
+.featured-services-section h2 {
+  text-align: center;
+  font-size: 2.5rem;
+  color: #38bdf8;
+  margin-bottom: 3rem;
+}
+
+.services-preview {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.service-preview-card {
+  background: rgba(30, 41, 59, 0.8);
+  padding: 2rem;
+  border-radius: 16px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.service-preview-card:hover {
+  transform: translateY(-10px);
+  background: rgba(30, 41, 59, 0.9);
+}
+
+.service-preview-card i {
+  font-size: 3rem;
+  color: #38bdf8;
+  margin-bottom: 1.5rem;
+}
+
+.service-preview-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #e2e8f0;
+}
+
+.service-preview-card p {
+  color: #94a3b8;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.service-link {
+  color: #38bdf8;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.service-link:hover {
+  color: #0ea5e9;
+}
+
+/* Contacto Rápido */
+.quick-contact-section {
+  padding: 4rem 2rem;
+  text-align: center;
+  border-radius: 20px;
+  margin: 2rem;
+}
+
+.quick-contact-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.quick-contact-section h2 {
+  font-size: 2.5rem;
+  color: #38bdf8;
+  margin-bottom: 1rem;
+}
+
+.quick-contact-section p {
+  font-size: 1.2rem;
+  color: #e2e8f0;
+  margin-bottom: 2rem;
+}
+
+.contact-options {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.contact-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 2rem;
+  background: #38bdf8;
+  color: #0f172a;
+  text-decoration: none;
+  border-radius: 12px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.contact-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(56, 189, 248, 0.2);
+  background: #0ea5e9;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
   .hero-section {
-    flex-direction: column;
-    text-align: center;
+    padding: 2rem 1rem;
+    min-height: auto;
+  }
+
+  .hero-content {
+    margin-bottom: 2rem;
+    padding: 0 1rem;
+  }
+
+  .hero-image {
+    margin: 0;
+    padding: 0 1rem;
+  }
+
+  .main-hero-image {
+    min-height: 300px;
+    width: 100%;
+  }
+
+  .benefits-grid,
+  .categories-grid,
+  .services-preview {
+    grid-template-columns: 1fr;
+  }
+
+  .quick-contact-section {
+    margin: 1rem;
     padding: 2rem 1rem;
   }
-  .hero-image {
-    margin-top: 2rem;
+}
+
+@media (max-width: 480px) {
+  .hero-content h1 {
+    font-size: 2rem;
   }
-  .vision-mission-section {
-    flex-direction: column;
-    align-items: center;
+
+  .hero-btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .contact-btn {
+    width: 100%;
+    justify-content: center;
   }
 }
