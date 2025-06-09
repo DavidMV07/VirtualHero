@@ -1,6 +1,12 @@
 import "./Home.css";
-
+import { Link } from 'react-router-dom';
 function Home() {
+
+    const handleCategoryClick = (category) => {
+    window.location.href = `/Accesorios?cat=${category}`;
+    setMenuOpen(false);
+    setCategoryDropdownOpen(false);
+  };
   return (
     <div className="home-container">
       {/* Hero principal */}
@@ -12,7 +18,7 @@ function Home() {
           <p>
             Tu tienda de tecnología de confianza. Encuentra productos informáticos y servicios de mantenimiento para todas tus necesidades tecnológicas.
           </p>
-          <a href="/Accesorios" className="hero-btn">Explora Accesorios</a>
+          <a><Link to="/Accesorios" onClick={() => handleCategoryClick("Periféricos")} className="hero-btn">Explora Accesorios</Link></a>
         </div>
         <div className="hero-image">
           <img src="/images/ai-future.jpg" alt="Tecnología" />

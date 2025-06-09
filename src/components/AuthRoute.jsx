@@ -9,6 +9,7 @@ const AuthRoute = ({ children }) => {
 
     useEffect(() => {
 
+        //Escucha si el usuario esta logueado
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             if (user) {
                 setLoading(false);

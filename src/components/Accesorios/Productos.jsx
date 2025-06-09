@@ -11,7 +11,7 @@ const ProductosList = () => {
     const [error, setError] = useState(null);
     const [titulo] = useState("Productos");
     
-    const categoria = useParams().categoria;
+    const categoria = useParams().cat;
 
     useEffect(() => {
         setLoading(true);
@@ -25,7 +25,7 @@ const ProductosList = () => {
                 const productosRef = collection(db, "productos");
                 console.log("Referencia a colección creada:", productosRef);
                 
-                const q = categoria ? query(productosRef, where("categoria", "==", categoria)) : productosRef;
+                const q = cat ? query(productosRef, where("categoria", "==", cat)) : productosRef;
                 console.log("Query construida:", q);
                 
                 console.log("Obteniendo productos...");

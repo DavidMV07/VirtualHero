@@ -60,6 +60,7 @@ const Header = () => {
               <li><Link to="/Accesorios" onClick={() => handleCategoryClick("Mobiliario")}>Mobiliario</Link></li>
               <li><Link to="/Accesorios" onClick={() => handleCategoryClick("Computadores")}>Computadores</Link></li>
               <li><Link to="/Accesorios" onClick={() => handleCategoryClick("Almacenamiento")}>Almacenamiento</Link></li>
+              
             </ul>
           )}
         </div>
