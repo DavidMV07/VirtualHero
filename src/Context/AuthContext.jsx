@@ -30,53 +30,57 @@ export const useAuth = () => {
 // Este componente envolverá a la aplicación y proporcionará acceso global
 // al estado de autenticación y otros datos relacionados con el usuario.
 export const AuthProvider = ({ children }) => {
-
-  // Estado para almacenar la información del usuario autenticado.
   const [user, setUser] = useState(null);
-
-  // Estado para almacenar el rol del usuario (por ejemplo: admin, cliente, etc.).
   const [userRole, setUserRole] = useState(null);
-
-  // Estado que indica si aún se están cargando los datos del usuario (útil para mostrar spinners, etc.).
+  const [userProfile, setUserProfile] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const getUserRole = async (uid) => {
+  const getUserData = async (uid) => {
     try {
       const userDoc = await getDoc(doc(db, 'users', uid));
       if (userDoc.exists()) {
-        return userDoc.data().role;
+        const userData = userDoc.data();
+        return {
+          role: userData.role || 'user',
+          firstName: userData.firstName,
+          lastName: userData.lastName
+        };
       }
-      return 'user'; // rol por defecto
+      return { role: 'user' };
     } catch (error) {
-      console.error('Error al obtener el rol del usuario:', error);
-      return 'user';
+      console.error('Error al obtener datos del usuario:', error);
+      return { role: 'user' };
     }
   };
 
-  const updateUserRole = async (uid, email, role = 'user') => {
+  const updateUserRole = async (uid, email, role = 'user', firstName = '', lastName = '') => {
     try {
       await setDoc(doc(db, 'users', uid), {
         email,
         role,
+        firstName,
+        lastName,
         createdAt: new Date().toISOString()
       }, { merge: true });
     } catch (error) {
-      console.error('Error al actualizar el rol del usuario:', error);
+      console.error('Error al actualizar datos del usuario:', error);
     }
   };
 
-  // Efecto para escuchar cambios en el estado de autenticación
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       if (currentUser) {
-        const role = await getUserRole(currentUser.uid);
+        const userData = await getUserData(currentUser.uid);
         setUser(currentUser);
-        setUserRole(role);
-        localStorage.setItem("userEmail", currentUser.email);
+        setUserRole(userData.role);
+        setUserProfile({
+          firstName: userData.firstName,
+          lastName: userData.lastName
+        });
       } else {
         setUser(null);
         setUserRole(null);
-        localStorage.removeItem("userEmail");
+        setUserProfile(null);
       }
       setLoading(false);
     });
@@ -87,6 +91,7 @@ export const AuthProvider = ({ children }) => {
   const value = {
     user,
     userRole,
+    userProfile,
     loading,
     updateUserRole
   };

@@ -18,13 +18,18 @@ const Login = () => {
 
         try {
             await signInWithEmailAndPassword(auth, email, password);
-            localStorage.setItem("userEmail", email);
-            navigate('/');
+            
+            // Verificar si hay un producto pendiente
+            const pendingProduct = localStorage.getItem('lastProductDetail');
+            if (pendingProduct) {
+                const { productId } = JSON.parse(pendingProduct);
+                navigate(`/Product/${productId}`);
+            } else {
+                navigate('/');
+            }
         } catch (err) {
-            if (err.code === "auth/user-not-found") {
-                setError("Usuario no encontrado");
-            } else if (err.code === "auth/wrong-password") {
-                setError("Contraseña incorrecta");
+            if (err.code === "auth/invalid-email" || err.code === "auth/wrong-password" || err.code === "auth/user-not-found") {
+                setError("Correo o contraseña incorrectos");
             } else {
                 setError("Error al iniciar sesión");
             }

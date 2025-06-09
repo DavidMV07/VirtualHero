@@ -1,7 +1,7 @@
 import './Header.css';
 import { useState } from 'react';
 import CartWidget from '../Accesorios/CartWidget';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { auth } from '../../firebase/config';
 import { signOut } from 'firebase/auth';
@@ -9,16 +9,17 @@ import { signOut } from 'firebase/auth';
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [categoryDropdownOpen, setCategoryDropdownOpen] = useState(false);
-  const { user, userRole } = useAuth();
+  const { user, userRole, userProfile } = useAuth();
+  const navigate = useNavigate();
 
   const handleLoginClick = () => {
-    window.location.href = '/login';
+    navigate('/login');
   };
 
   const handleLogout = async () => {
     try {
       await signOut(auth);
-      window.location.href = '/login';
+      navigate('/login');
     } catch (error) {
       console.error("Error al cerrar sesión:", error);
     }
@@ -29,9 +30,28 @@ const Header = () => {
   };
 
   const handleCategoryClick = (category) => {
-    window.location.href = `/Accesorios?cat=${category}`;
+    console.log("Navegando a categoría:", category);
+    if (category === "Todos") {
+      navigate('/Accesorios');
+    } else {
+      navigate(`/Accesorios/${category}`);
+    }
     setMenuOpen(false);
     setCategoryDropdownOpen(false);
+  };
+
+  const getUserDisplayName = () => {
+    if (userProfile && userProfile.firstName && userProfile.lastName) {
+      return `${userProfile.firstName} ${userProfile.lastName}`;
+    }
+    return user?.email || '';
+  };
+
+  const getInitials = () => {
+    if (userProfile && userProfile.firstName && userProfile.lastName) {
+      return `${userProfile.firstName[0]}${userProfile.lastName[0]}`.toUpperCase();
+    }
+    return user?.email[0].toUpperCase() || '';
   };
 
   return (
@@ -53,13 +73,13 @@ const Header = () => {
           </button>
           {categoryDropdownOpen && (
             <ul className={`dropdown-content${categoryDropdownOpen ? ' show' : ''}`}>
-              <li><Link to="/Accesorios" onClick={() => handleCategoryClick("Todos")}>Todos</Link></li>
-              <li><Link to="/Accesorios" onClick={() => handleCategoryClick("Periféricos")}>Periféricos</Link></li>
-              <li><Link to="/Accesorios" onClick={() => handleCategoryClick("Audio")}>Audio</Link></li>
-              <li><Link to="/Accesorios" onClick={() => handleCategoryClick("Pantallas")}>Pantallas</Link></li>
-              <li><Link to="/Accesorios" onClick={() => handleCategoryClick("Mobiliario")}>Mobiliario</Link></li>
-              <li><Link to="/Accesorios" onClick={() => handleCategoryClick("Computadores")}>Computadores</Link></li>
-              <li><Link to="/Accesorios" onClick={() => handleCategoryClick("Almacenamiento")}>Almacenamiento</Link></li>
+              <li><button className="category-btn" onClick={() => handleCategoryClick("Todos")}>Todos</button></li>
+              <li><button className="category-btn" onClick={() => handleCategoryClick("Periféricos")}>Periféricos</button></li>
+              <li><button className="category-btn" onClick={() => handleCategoryClick("Audio")}>Audio</button></li>
+              <li><button className="category-btn" onClick={() => handleCategoryClick("Pantallas")}>Pantallas</button></li>
+              <li><button className="category-btn" onClick={() => handleCategoryClick("Mobiliario")}>Mobiliario</button></li>
+              <li><button className="category-btn" onClick={() => handleCategoryClick("Computadores")}>Computadores</button></li>
+              <li><button className="category-btn" onClick={() => handleCategoryClick("Almacenamiento")}>Almacenamiento</button></li>
             </ul>
           )}
         </div>
@@ -82,8 +102,8 @@ const Header = () => {
       <div className="auth-buttons desktop-only">
         {user ? (
           <div className="user-info">
-            <span className="user-avatar">{user.email[0].toUpperCase()}</span>
-            <span className="user-email">{user.email}</span>
+            <span className="user-avatar">{getInitials()}</span>
+            <span className="user-name">{getUserDisplayName()}</span>
             {userRole === 'admin' && <span className="user-role">Admin</span>}
             <button className="logout-btn" onClick={handleLogout}>Salir</button>
           </div>
@@ -92,7 +112,7 @@ const Header = () => {
             <a className='ri-user-3-fill btn User__Login' onClick={handleLoginClick}>
               <span className='Span__Users'>Log in</span>
             </a>
-            <a className='ri-user-add-fill btn User__Register' onClick={() => (window.location.href = '/signup')}>
+            <a className='ri-user-add-fill btn User__Register' onClick={() => navigate('/signup')}>
               <span className='Span__Users'>Sign up</span>
             </a>
           </>
