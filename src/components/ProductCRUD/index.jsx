@@ -73,7 +73,7 @@ export default function ProductCRUD() {
       cancelButtonColor: '#6b7280',
       confirmButtonText: 'Sí, eliminar',
       cancelButtonText: 'Cancelar',
-      background: '#fff',
+       background: '#fff',
       customClass: {
         popup: 'swal-custom-popup',
         title: 'swal-custom-title',

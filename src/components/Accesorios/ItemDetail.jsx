@@ -3,7 +3,7 @@ import "./Accesorios.css"
 import { toCapital } from "../../helpers/toCapital"
 import ItemCount from "./ItemCount"
 import { CartContext } from "../../Context/CartContext";
-import { useAuth } from "../../context/AuthContext";
+import { useAuth } from "../../Context/AuthContext";
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
 

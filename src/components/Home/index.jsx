@@ -87,15 +87,7 @@ function Home() {
               <p className="category-desc">Monitores gaming y 4K</p>
             </div>
           </Link>
-          <Link to="/Accesorios/Mobiliario" className="category-card">
-            <div className="category-image">
-              <img src="/images/chair.jpg" alt="Mobiliario" />
-            </div>
-            <div className="category-info">
-              <span className="category-name">Mobiliario</span>
-              <p className="category-desc">Sillas y escritorios gaming</p>
-            </div>
-          </Link>
+        
         </div>
       </section>
 

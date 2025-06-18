@@ -2,21 +2,21 @@ import './Header.css';
 import { useState } from 'react';
 import CartWidget from '../Accesorios/CartWidget';
 import { Link, useNavigate } from 'react-router-dom';
-import { useAuth } from '../../context/AuthContext';
+import { useAuth } from '../../Context/AuthContext';
 import { auth } from '../../firebase/config';
 import { signOut } from 'firebase/auth';
 
 const Header = () => {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [categoryDropdownOpen, setCategoryDropdownOpen] = useState(false);
+  const [menuAbierto, setMenuAbierto] = useState(false);
+  const [dropdownCategoriasAbierto, setDropdownCategoriasAbierto] = useState(false);
   const { user, userRole, userProfile } = useAuth();
   const navigate = useNavigate();
 
-  const handleLoginClick = () => {
+  const handleClickLogin = () => {
     navigate('/login');
   };
 
-  const handleLogout = async () => {
+  const handleCerrarSesion = async () => {
     try {
       await signOut(auth);
       navigate('/login');
@@ -25,29 +25,29 @@ const Header = () => {
     }
   };
 
-  const handleLinkClick = () => {
-    setMenuOpen(false);
+  const handleClickEnlace = () => {
+    setMenuAbierto(false);
   };
 
-  const handleCategoryClick = (category) => {
-    console.log("Navegando a categoría:", category);
-    if (category === "Todos") {
+  const handleClickCategoria = (categoria) => {
+    console.log("Navegando a categoría:", categoria);
+    if (categoria === "Todos") {
       navigate('/Accesorios');
     } else {
-      navigate(`/Accesorios/${category}`);
+      navigate(`/Accesorios/${categoria}`);
     }
-    setMenuOpen(false);
-    setCategoryDropdownOpen(false);
+    setMenuAbierto(false);
+    setDropdownCategoriasAbierto(false);
   };
 
-  const getUserDisplayName = () => {
+  const obtenerNombreUsuario = () => {
     if (userProfile && userProfile.firstName && userProfile.lastName) {
       return `${userProfile.firstName} ${userProfile.lastName}`;
     }
     return user?.email || '';
   };
 
-  const getInitials = () => {
+  const obtenerIniciales = () => {
     if (userProfile && userProfile.firstName && userProfile.lastName) {
       return `${userProfile.firstName[0]}${userProfile.lastName[0]}`.toUpperCase();
     }
@@ -63,36 +63,36 @@ const Header = () => {
       <input type="checkbox" id="menu__toggle" className="menu__toggle" />
       <label htmlFor="menu__toggle" className="Menucheck">&#9776;</label>
 
-      <nav className={`nav__links${menuOpen ? ' show' : ''}`} id="nav-menu">
-        <Link to="/" className='nav__item' onClick={handleLinkClick}>
-          <i className="ri-home-4-fill"></i> Home
+      <nav className={`nav__links${menuAbierto ? ' show' : ''}`} id="nav-menu">
+        <Link to="/" className='nav__item' onClick={handleClickEnlace}>
+          <i className="ri-home-4-fill"></i> Inicio
         </Link>
         <div className="dropdown">
-          <button className="nav__item dropdown-btn" onClick={() => setCategoryDropdownOpen(!categoryDropdownOpen)}>
-            <i className="ri-store-3-fill"></i> Accessories ▾
+          <button className="nav__item dropdown-btn" onClick={() => setDropdownCategoriasAbierto(!dropdownCategoriasAbierto)}>
+            <i className="ri-store-3-fill"></i> Accesorios ▾
           </button>
-          {categoryDropdownOpen && (
-            <ul className={`dropdown-content${categoryDropdownOpen ? ' show' : ''}`}>
-              <li><button className="category-btn" onClick={() => handleCategoryClick("Todos")}>Todos</button></li>
-              <li><button className="category-btn" onClick={() => handleCategoryClick("Periféricos")}>Periféricos</button></li>
-              <li><button className="category-btn" onClick={() => handleCategoryClick("Audio")}>Audio</button></li>
-              <li><button className="category-btn" onClick={() => handleCategoryClick("Pantallas")}>Pantallas</button></li>
-              <li><button className="category-btn" onClick={() => handleCategoryClick("Mobiliario")}>Mobiliario</button></li>
-              <li><button className="category-btn" onClick={() => handleCategoryClick("Computadores")}>Computadores</button></li>
-              <li><button className="category-btn" onClick={() => handleCategoryClick("Almacenamiento")}>Almacenamiento</button></li>
+          {dropdownCategoriasAbierto && (
+            <ul className={`dropdown-content${dropdownCategoriasAbierto ? ' show' : ''}`}>
+              <li><button className="category-btn" onClick={() => handleClickCategoria("Todos")}>Todos</button></li>
+              <li><button className="category-btn" onClick={() => handleClickCategoria("Periféricos")}>Periféricos</button></li>
+              <li><button className="category-btn" onClick={() => handleClickCategoria("Audio")}>Audio</button></li>
+              <li><button className="category-btn" onClick={() => handleClickCategoria("Pantallas")}>Pantallas</button></li>
+              <li><button className="category-btn" onClick={() => handleClickCategoria("Mobiliario")}>Mobiliario</button></li>
+              <li><button className="category-btn" onClick={() => handleClickCategoria("Computadores")}>Computadores</button></li>
+              <li><button className="category-btn" onClick={() => handleClickCategoria("Almacenamiento")}>Almacenamiento</button></li>
             </ul>
           )}
         </div>
         {userRole === 'admin' && (
-          <Link to="/ProductCRUD" className="nav__item" onClick={handleLinkClick}>
-            <i className="ri-admin-fill"></i> Admin
+          <Link to="/ProductCRUD" className="nav__item" onClick={handleClickEnlace}>
+            <i className="ri-admin-fill"></i> Administrar
           </Link>
         )}
-        <Link to="/Services" className="nav__item" onClick={handleLinkClick}>
-          <i className="ri-service-fill"></i> Services
+        <Link to="/Services" className="nav__item" onClick={handleClickEnlace}>
+          <i className="ri-service-fill"></i> Servicios
         </Link>
-        <Link to="/Contact" className="nav__item" onClick={handleLinkClick}>
-          <i className="ri-contacts-fill"></i> Contact
+        <Link to="/Contact" className="nav__item" onClick={handleClickEnlace}>
+          <i className="ri-contacts-fill"></i> Contacto
         </Link>
         <div className="nav__item">
           <CartWidget />
@@ -102,18 +102,18 @@ const Header = () => {
       <div className="auth-buttons desktop-only">
         {user ? (
           <div className="user-info">
-            <span className="user-avatar">{getInitials()}</span>
-            <span className="user-name">{getUserDisplayName()}</span>
+            <span className="user-avatar">{obtenerIniciales()}</span>
+            <span className="user-name">{obtenerNombreUsuario()}</span>
             {userRole === 'admin' && <span className="user-role">Admin</span>}
-            <button className="logout-btn" onClick={handleLogout}>Salir</button>
+            <button className="logout-btn" onClick={handleCerrarSesion}>Salir</button>
           </div>
         ) : (
           <>
-            <a className='ri-user-3-fill btn User__Login' onClick={handleLoginClick}>
-              <span className='Span__Users'>Log in</span>
+            <a className='ri-user-3-fill btn User__Login' onClick={handleClickLogin}>
+              <span className='Span__Users'>Iniciar sesión</span>
             </a>
             <a className='ri-user-add-fill btn User__Register' onClick={() => navigate('/signup')}>
-              <span className='Span__Users'>Sign up</span>
+              <span className='Span__Users'>Registrarse</span>
             </a>
           </>
         )}
